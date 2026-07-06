@@ -3,9 +3,7 @@
 Public Interface IWorld
     Inherits IEntity
     Function Save(filename As String) As Task
-
-    'TODO: messages? (become its own thing in TGGD.Persistence)
-    'ReadOnly Property Messages As IEnumerable(Of String)
-    'Sub ClearMessages()
-    'Sub AddMessage(message As String)
+    ReadOnly Property Messages As IEnumerable(Of IMessage)
+    Sub ClearMessages()
+    Sub AddMessage(text As String, Optional hints As IDictionary(Of String, String) = Nothing)
 End Interface

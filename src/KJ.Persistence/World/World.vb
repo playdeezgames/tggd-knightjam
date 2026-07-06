@@ -1,6 +1,7 @@
 ﻿Imports System.Text.Json
 Imports KJ.Provision
 Imports TGGD.Persistence
+Imports TGGD.Provision
 
 Public Class World
     Inherits Entity(Of WorldData)
@@ -12,6 +13,15 @@ Public Class World
     End Sub
 
     Protected Overrides ReadOnly Property Data As WorldData
+
+    Public ReadOnly Property Messages As IEnumerable(Of IMessage) Implements IWorld.Messages
+        Get
+            Return Enumerable.
+                Range(0, Data.Messages.Count).
+                Select(Function(x) TGGD.Persistence.Message.Create(Function() Data.Messages(x)))
+        End Get
+    End Property
+
     Private ReadOnly persister As IPersister
 
     Public Async Function Save(filename As String) As Task Implements IWorld.Save
@@ -25,4 +35,21 @@ Public Class World
     Public Shared Function Create(data As WorldData, persister As IPersister) As IWorld
         Return New World(data, persister)
     End Function
+
+    Public Sub ClearMessages() Implements IWorld.ClearMessages
+        Data.Messages.Clear()
+    End Sub
+
+    Public Sub AddMessage(
+                         text As String,
+                         Optional hints As IDictionary(Of String, String) = Nothing) Implements IWorld.AddMessage
+        Dim messageData As New MessageData With
+            {
+                .Text = text
+            }
+        If hints IsNot Nothing Then
+            messageData.Hints = hints.ToDictionary(Function(x) x.Key, Function(x) x.Value)
+        End If
+        Data.Messages.Add(messageData)
+    End Sub
 End Class
