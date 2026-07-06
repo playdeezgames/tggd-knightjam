@@ -2,7 +2,7 @@ Imports KJ.Processing
 Imports TGGD.Presentation
 
 Public Class Title
-    Inherits ExitableModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
     Implements IDialog
 
     Private Sub New(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource)
@@ -13,7 +13,7 @@ Public Class Title
         Context.Render("Yermom's Tits of SPLORR!!")
         Return DialogPrompt.CreateChoicePrompt(
             "",
-            DialogChoice.Create(True, "OK", Launch(Context, Model, ExitDialog)))
+            DialogChoice.Create(True, "OK", Launch(Context, Model, PreviousDialog)))
     End Function
 
     Public Shared Function Launch(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As DialogSource

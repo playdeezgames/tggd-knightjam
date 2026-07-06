@@ -1,15 +1,15 @@
 ﻿Imports TGGD.Processing
 
-Public MustInherit Class ExitableModelDialog(Of TContext As IDisplayContext, TModel As IModel)
+Public MustInherit Class StackedModelDialog(Of TContext As IDisplayContext, TModel As IModel)
     Inherits BaseModelDialog(Of TContext, TModel)
 
-    Protected ReadOnly ExitDialog As DialogSource
+    Protected ReadOnly PreviousDialog As DialogSource
 
     Protected Sub New(
                      context As TContext,
                      model As TModel,
-                     exitDialog As DialogSource)
+                     previous As DialogSource)
         MyBase.New(context, model)
-        Me.ExitDialog = exitDialog
+        Me.PreviousDialog = previous
     End Sub
 End Class
