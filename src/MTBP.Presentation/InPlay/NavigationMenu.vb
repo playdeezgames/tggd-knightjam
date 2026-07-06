@@ -1,0 +1,73 @@
+﻿Imports MTBP.Processing
+Imports TGGD.Presentation
+
+Friend Class NavigationMenu
+    Inherits PickerMenu
+
+    Private Sub New(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource)
+        MyBase.New(context, model, exitDialog, "Now What?")
+    End Sub
+
+    Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
+        Get
+            Return Enumerable.Empty(Of LaunchDelegate).
+                Append(AddressOf ChooseMoveMenu).
+                Append(AddressOf ChooseGroundMenu).
+                Append(AddressOf ChooseInventoryMenu).
+                Append(AddressOf ChooseFeatureMenu).
+                Append(AddressOf ChooseStatusMenu).
+                Append(AddressOf ChooseLookMenu).
+                Append(AddressOf ChooseGameMenu)
+        End Get
+    End Property
+
+    Private Function ChooseLookMenu(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(
+            True,
+            "Look",
+            LookActivity.Launch(context, model, exitDialog, True))
+    End Function
+
+    Private Function ChooseStatusMenu(
+                                     context As IDisplayContext,
+                                     model As IWorldModel,
+                                     exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(
+            True,
+            "Status",
+            StatusActivity.Launch(context, model, exitDialog))
+    End Function
+
+    Private Function ChooseGroundMenu(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(
+            model.Ground.HasItems,
+            "Ground...",
+            GroundMenu.Launch(context, model, exitDialog))
+    End Function
+
+    Private Function ChooseInventoryMenu(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(
+            model.Inventory.HasItems,
+            "Inventory...",
+            InventoryMenu.Launch(context, model, exitDialog))
+    End Function
+
+    Private Function ChooseFeatureMenu(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(
+            model.Features.HasAny,
+            "Feature...",
+            FeaturesMenu.Launch(context, model, exitDialog))
+    End Function
+
+    Private Shared Function ChooseMoveMenu(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Exits.HasAny, "Move...", MoveMenu.Launch(context, model, exitDialog))
+    End Function
+
+    Private Shared Function ChooseGameMenu(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(True, "Game Menu", GameMenu.Launch(context, model, exitDialog))
+    End Function
+
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As DialogSource
+        Return Function() New NavigationMenu(context, model, exitDialog)
+    End Function
+End Class

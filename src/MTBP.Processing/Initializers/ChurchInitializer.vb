@@ -1,0 +1,82 @@
+﻿Imports MTBP.Persistence
+Imports TGGD.Processing
+
+Friend Module ChurchInitializer
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
+        Return Sub(location As ILocation)
+                   location.SetName("Church")
+                   location.SetDescription("This is a building for talking to the invisible sky-man. I ain't yer judge.")
+                   context.Church = location
+                   location.CreateFeature(AddressOf InitializeAltar)
+                   context.AlcoveTags = CreateAlcoves(location)
+                   location.CreateFeature(AddressOf InitializeBell)
+                   location.CreateRoute(Directions.EAST, context.ChurchYard, AddressOf InitializeChurchExit)
+                   context.ChurchYard.CreateRoute(Directions.WEST, location, AddressOf InitializeChurchEntrance)
+               End Sub
+    End Function
+
+    Private Sub InitializeBell(feature As IFeature)
+        feature.SetName("Rope")
+        feature.SetDescription("This is a rope. Presumably it goes to a church bell, for this is a church after all. Prolly if you pull this, it'll ring. Alternately, there is enough rope to hang yerself.")
+        feature.CreateVerb(AddressOf InitializePullRope)
+        feature.CreateVerb(AddressOf InitializeHangSelf)
+    End Sub
+
+    Private Sub InitializeHangSelf(verb As IVerb)
+        verb.SetName("Hang Self")
+        verb.SetDescription("Listen. I'm not telling what to do. I'm just saying that options are available.")
+        verb.SetVerbType(VerbTypes.HANG_SELF)
+    End Sub
+
+    Private Sub InitializePullRope(verb As IVerb)
+        verb.SetName("Pull Rope")
+        verb.SetDescription("Anything could happen! Most likely a bell will ring. But who knows?")
+        verb.SetVerbType(VerbTypes.PULL_ROPE)
+    End Sub
+
+    Private Function CreateAlcoves(location As ILocation) As Queue(Of String)
+        Dim result As New Queue(Of String)
+        Dim consonants As New Queue(Of String)({RingTypes.BONE, RingTypes.JADE, RingTypes.SILVER}.OrderBy(Function(x) Guid.NewGuid))
+        Dim vowels As New Queue(Of String)({RingTypes.AMBER, RingTypes.EBONY, RingTypes.IVORY}.OrderBy(Function(x) Guid.NewGuid))
+        Dim isVowel = RNG.FromGenerator(RNG.MakeBooleanGenerator(1, 1))
+        For Each alcoveNumber In Enumerable.Range(1, ALCOVE_COUNT)
+            Dim ringType = If(isVowel, vowels.Dequeue, consonants.Dequeue)
+            result.Enqueue(ringType)
+            isVowel = Not isVowel
+            location.CreateFeature(InitializeAlcove(alcoveNumber, ringType))
+        Next
+        Return result
+    End Function
+
+    Private Function InitializeAlcove(alcoveNumber As Integer, ringType As String) As FeatureInitializer
+        Return Sub(feature)
+                   feature.SetName($"Alcove #{alcoveNumber}")
+                   feature.SetDescription($"This is an alcove. There is a ring shaped recess in the midst of it.")
+                   feature.SetRingType(ringType)
+                   feature.SetTag(Tags.ALCOVE)
+                   feature.SetCounter(Counters.ALCOVE_NUMBER, alcoveNumber)
+               End Sub
+    End Function
+
+    Private Sub InitializeAltar(feature As IFeature)
+        feature.SetName("Altar")
+        feature.SetDescription("Upon this you can place victims, and sacrifice them. You know, if yer into that. If not, this is really just a table. A sturdy, sturdy table. You can also pray here, but don't be surprised if while yer praying something shoves an object up yer butt.")
+        feature.CreateVerb(AddressOf InitializePrayer)
+    End Sub
+
+    Private Sub InitializePrayer(verb As IVerb)
+        verb.SetName("Pray")
+        verb.SetDescription("Prayer is you talking to the invisible sky-man and asking for stuff.")
+        verb.SetVerbType(VerbTypes.PRAY)
+    End Sub
+
+    Private Sub InitializeChurchEntrance(route As IRoute)
+        route.SetName("Church Entrance")
+        route.SetDescription("Through here you can enter the church.")
+    End Sub
+
+    Private Sub InitializeChurchExit(route As IRoute)
+        route.SetName("Church Exit")
+        route.SetDescription("Through here, you can exit the church.")
+    End Sub
+End Module

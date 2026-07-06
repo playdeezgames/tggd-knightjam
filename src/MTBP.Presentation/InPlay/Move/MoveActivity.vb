@@ -1,0 +1,22 @@
+﻿Imports MTBP.Processing
+Imports TGGD.Presentation
+
+Friend Class MoveActivity
+    Inherits ExitableModelDialog(Of IDisplayContext, IWorldModel)
+
+    Private ReadOnly Direction As String
+
+    Private Sub New(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource, direction As String)
+        MyBase.New(context, model, exitDialog)
+        Me.Direction = direction
+    End Sub
+
+    Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, e As DialogSource, direction As String) As DialogSource
+        Return Function() New MoveActivity(c, m, e, direction)
+    End Function
+
+    Public Overrides Function Run() As IDialogPrompt
+        Model.Exits.Move(Direction)
+        Return LookActivity.Launch(Context, Model, ExitDialog, False).Invoke().Run()
+    End Function
+End Class
