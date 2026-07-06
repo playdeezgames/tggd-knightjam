@@ -1,3 +1,4 @@
+Imports TGGD.Persistence
 Imports TGGD.Processing
 
 Public Interface IWorldModel
@@ -5,5 +6,5 @@ Public Interface IWorldModel
     ReadOnly Property IsQuittable As Boolean
     Sub Embark()
     Sub Abandon()
-    'TODO: ReadOnly Property Messages As IEnumerable(Of String)
+    ReadOnly Property Messages As IEnumerable(Of IMessage)
 End Interface

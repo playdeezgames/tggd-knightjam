@@ -13,6 +13,12 @@ Public Class WorldModel
 
     Public ReadOnly Property IsQuittable As Boolean Implements IWorldModel.IsQuittable
 
+    Public ReadOnly Property Messages As IEnumerable(Of IMessage) Implements IWorldModel.Messages
+        Get
+            Return Entity.Messages
+        End Get
+    End Property
+
     Public Sub Embark() Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create())
