@@ -13,7 +13,7 @@ Public Class Title
         Context.Render("Yermom's Tits of SPLORR!!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.TITLE}})
         Return DialogPrompt.CreateChoicePrompt(
             "",
-            DialogChoice.Create(True, "OK", Launch(Context, Model, PreviousDialog)))
+            DialogChoice.Create(True, "OK", MainMenu.Launch(Context, Model, PreviousDialog)))
     End Function
 
     Public Shared Function Launch(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As DialogSource

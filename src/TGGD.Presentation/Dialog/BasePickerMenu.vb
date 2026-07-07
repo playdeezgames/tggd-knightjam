@@ -1,8 +1,8 @@
 ﻿Imports TGGD.Processing
 
-Friend MustInherit Class BasePickerMenu(Of TContext As IDisplayContext, TModel As IModel)
+Public MustInherit Class BasePickerMenu(Of TContext As IDisplayContext, TModel As IModel)
     Inherits StackedModelDialog(Of TContext, TModel)
-    Friend Delegate Function LaunchDelegate(
+    Public Delegate Function LaunchDelegate(
                                      context As TContext,
                                      model As TModel,
                                      exitDialog As DialogSource) As IDialogChoice
