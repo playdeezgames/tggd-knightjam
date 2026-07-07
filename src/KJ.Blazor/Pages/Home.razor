@@ -5,10 +5,22 @@
 
 @foreach(var element in display?.Elements ?? Array.Empty<IDisplayElement>())
 {
-	<span>@element.Text</span>
-	if(element.NewLine)
+	if(element.Hints.TryGetValue(HintNames.ELEMENT_TYPE, out string? elementType))
 	{
-		<br/>
+		switch(elementType)
+		{
+			case ElementTypes.TITLE:
+				<h1>@element.Text</h1>
+				break;
+		}
+	}
+	else
+	{
+		<span>@element.Text</span>
+		if(element.NewLine)
+		{
+			<br/>
+		}
 	}
 }
 

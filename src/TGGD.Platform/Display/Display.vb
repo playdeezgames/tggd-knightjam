@@ -32,8 +32,11 @@ Public MustInherit Class Display
         _prompt = dialog?.Run()
     End Sub
 
-    Public Sub Render(Optional text As String = Nothing, Optional mood As String = Nothing, Optional newLine As Boolean = True) Implements IDisplayContext.Render
-        _elements.Add(DisplayElement.Create(text, mood, newLine))
+    Public Sub Render(
+                     Optional text As String = Nothing,
+                     Optional hints As IReadOnlyDictionary(Of String, String) = Nothing,
+                     Optional newLine As Boolean = True) Implements IDisplayContext.Render
+        _elements.Add(DisplayElement.Create(text, hints, newLine))
     End Sub
 
     Public MustOverride Function Start() As Task Implements IDisplay.Start

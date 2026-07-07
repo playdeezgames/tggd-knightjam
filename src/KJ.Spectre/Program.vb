@@ -1,8 +1,11 @@
 Imports System.Windows
 Imports KJ.Platform
+Imports KJ.Presentation
 Imports Spectre.Console
 Imports TGGD.Platform
 Imports TGGD.Presentation
+
+Friend Delegate Function ElementRenderer(element As IDisplayElement) As Boolean
 
 Module Program
     Sub Main(args As String())
@@ -54,20 +57,42 @@ Module Program
         prompt.Respond(counter:=AnsiConsole.Prompt(selectionPrompt))
     End Sub
 
-#Disable Warning CA1859 ' Use concrete types when possible for improved performance
-    Private ReadOnly moodColors As IReadOnlyDictionary(Of String, String) =
-        New Dictionary(Of String, String) From {}
-#Enable Warning CA1859 ' Use concrete types when possible for improved performance
+    Private ReadOnly elementRenders As IEnumerable(Of ElementRenderer) =
+        {
+            AddressOf TitleElementRenderer,
+            AddressOf DefaultElementRenderer
+        }
 
-    Private Sub RenderElement(element As IDisplayElement)
-        Dim colorName As String = Nothing
-        If element.Mood IsNot Nothing AndAlso moodColors.TryGetValue(element.Mood, colorName) Then
-            AnsiConsole.Markup($"[{colorName}]{Markup.Escape(element.Text)}[/]")
-        Else
-            AnsiConsole.Markup(Markup.Escape(element.Text))
+    Private Function TitleElementRenderer(element As IDisplayElement) As Boolean
+        Dim elementType As String = Nothing
+        If Not element.Hints.TryGetValue(HintNames.ELEMENT_TYPE, elementType) Then
+            Return False
         End If
+        If elementType <> ElementTypes.TITLE Then
+            Return False
+        End If
+        Dim figlet As New FigletText(element.Text) With
+            {
+                .Color = Color.Fuchsia,
+                .Justification = Justify.Center
+            }
+        AnsiConsole.Write(figlet)
+        Return True
+    End Function
+
+    Private Function DefaultElementRenderer(element As IDisplayElement) As Boolean
+        AnsiConsole.Markup(Markup.Escape(element.Text))
         If element.NewLine Then
             AnsiConsole.WriteLine()
         End If
+        Return True
+    End Function
+
+    Private Sub RenderElement(element As IDisplayElement)
+        For Each renderer In elementRenders
+            If renderer.Invoke(element) Then
+                Return
+            End If
+        Next
     End Sub
 End Module

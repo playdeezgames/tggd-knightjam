@@ -10,7 +10,7 @@ Public Class Title
     End Sub
 
     Public Overrides Function Run() As IDialogPrompt
-        Context.Render("Yermom's Tits of SPLORR!!")
+        Context.Render("Yermom's Tits of SPLORR!!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.TITLE}})
         Return DialogPrompt.CreateChoicePrompt(
             "",
             DialogChoice.Create(True, "OK", Launch(Context, Model, PreviousDialog)))
