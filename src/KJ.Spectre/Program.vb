@@ -60,12 +60,27 @@ Module Program
     Private ReadOnly elementRenders As IEnumerable(Of ElementRenderer) =
         {
             AddressOf TitleElementRenderer,
+            AddressOf LinkElementRenderer,
             AddressOf DefaultElementRenderer
         }
+    Private Function LinkElementRenderer(element As IDisplayElement) As Boolean
+        Dim elementType As String = Nothing
+        If Not If(element.Hints?.TryGetValue(HintNames.ELEMENT_TYPE, elementType), False) Then
+            Return False
+        End If
+        If elementType <> ElementTypes.LINK Then
+            Return False
+        End If
+        AnsiConsole.Markup($"{Markup.Escape(element.Text)}([blue]{Markup.Escape(element.Hints(HintNames.URL))}[/])")
+        If element.NewLine Then
+            AnsiConsole.WriteLine()
+        End If
+        Return True
+    End Function
 
     Private Function TitleElementRenderer(element As IDisplayElement) As Boolean
         Dim elementType As String = Nothing
-        If Not element.Hints.TryGetValue(HintNames.ELEMENT_TYPE, elementType) Then
+        If Not If(element.Hints?.TryGetValue(HintNames.ELEMENT_TYPE, elementType), False) Then
             Return False
         End If
         If elementType <> ElementTypes.TITLE Then

@@ -14,15 +14,19 @@
 				break;
 			case ElementTypes.LINK:
 				<a href="@element.Hints[HintNames.URL]" target="_blank">@element.Text</a>
+				if (element.NewLine)
+				{
+					<br />
+				}
 				break;
 		}
 	}
 	else
 	{
 		<span>@element.Text</span>
-		if(element.NewLine)
+		if (element.NewLine)
 		{
-			<br/>
+			<br />
 		}
 	}
 }
