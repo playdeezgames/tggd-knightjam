@@ -36,7 +36,7 @@ Friend Class MainMenu
     End Function
 
     Private Function ChooseEmbark(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Embark!", Launch(context, model, PreviousDialog))
+        Return DialogChoice.CreateEnabled("Embark!", ChooseNamePrompt.Launch(context, model, PreviousDialog))
     End Function
 
     Protected Overrides Sub Render()

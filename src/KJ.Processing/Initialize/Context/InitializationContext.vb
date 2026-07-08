@@ -1,8 +1,12 @@
 ﻿Friend Class InitializationContext
     Implements IInitializationContext
-    Private Sub New()
+    Private Sub New(chosenName As String)
+        Me.ChosenName = chosenName
     End Sub
-    Friend Shared Function Create() As IInitializationContext
-        Return New InitializationContext()
+
+    Public ReadOnly Property ChosenName As String Implements IInitializationContext.ChosenName
+
+    Friend Shared Function Create(chosenName As String) As IInitializationContext
+        Return New InitializationContext(chosenName)
     End Function
 End Class

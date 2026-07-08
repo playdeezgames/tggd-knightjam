@@ -9,7 +9,7 @@ Friend Delegate Function ElementRenderer(element As IDisplayElement) As Boolean
 
 Module Program
     Sub Main(args As String())
-        Console.Title = "Yermom's Tits of SPLORR!!"
+        Console.Title = "Authentic Experience of SPLORR!!"
         Dim display As IDisplay = KJDisplay.Create(True, New Persister).Result
         While display.Running
             AnsiConsole.Clear()

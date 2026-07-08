@@ -16,6 +16,14 @@ html, body {
     background-color: #000;
 }
 
+input.valid {
+    border-radius: 12px;
+    padding: 10px 20px;
+    border: 1px solid #c0c;
+    color: #c0c;
+    background-color: #888;
+}
+
 h1:focus {
     outline: none;
 }
