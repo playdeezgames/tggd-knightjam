@@ -19,10 +19,12 @@
     <Project Path="KJ.Platform/KJ.Platform.vbproj" Id="8a5d8fa6-f815-4cd5-8043-a27a3a795bb1" />
     <Project Path="TGGD.Platform/TGGD.Platform.vbproj" Id="c9ee3578-1289-4864-ad74-6570b8d71b59" />
   </Folder>
+  <Folder Name="/06_Play/">
+    <Project Path="KJ.Blazor/KJ.Blazor.csproj" />
+    <Project Path="KJ.Spectre/KJ.Spectre.vbproj" />
+  </Folder>
   <Folder Name="/_STUFF/">
     <File Path="../README.md" />
     <File Path="../shippit.sh" />
   </Folder>
-  <Project Path="KJ.Blazor/KJ.Blazor.csproj" />
-  <Project Path="KJ.Spectre/KJ.Spectre.vbproj" />
 </Solution>

@@ -6,12 +6,22 @@ A Production of TheGrumpyGameDev
 
 For Knight Jam
 
-
-# Schedule (Proposed)
-
-- 0330 - wakey wakey
-- 0330-0400 - get "proffee", take DRUGS, brush teef, ztg nonsense, food
-- 0400 - strim
-- 0600 - wrrk
-- NLT 2000 - exercise and sharr
-- NLT 2130 - bed time
+# "Architecture"
+## Layer 1: Provision
+### TGGD.Provision
+### (METAPHOR).Provision
+## Layer 2: Persistence
+### TGGD.Persistence
+### (METAPHOR).Persistence
+## Layer 3: Processing
+### TGGD.Processing
+### (METAPHOR).Processing
+## Layer 4: Presentation
+### TGGD.Presentation
+### (METAPHOR).Presentation
+## Layer 5: Platform
+### TGGD.Platform
+### (METAPHOR).Platform
+## Layer 6: Play
+### (METAPHOR).Blazor
+### (METAPHOR).Spectre
