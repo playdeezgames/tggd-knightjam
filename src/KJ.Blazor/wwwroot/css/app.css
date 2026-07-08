@@ -4,6 +4,18 @@ html, body {
     color: #C000C0;
 }
 
+.prompt-title {
+    color: #00C000;
+}
+
+.choice-button {
+    border-radius: 12px;
+    padding: 10px 20px;
+    border: 1px solid #c0c;
+    color: #c0c;
+    background-color: #000;
+}
+
 h1:focus {
     outline: none;
 }

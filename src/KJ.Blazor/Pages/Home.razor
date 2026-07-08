@@ -5,12 +5,15 @@
 
 @foreach(var element in display?.Elements ?? Array.Empty<IDisplayElement>())
 {
-	if(element.Hints.TryGetValue(HintNames.ELEMENT_TYPE, out string? elementType))
+	if(element.Hints?.TryGetValue(HintNames.ELEMENT_TYPE, out string? elementType) ?? false)
 	{
 		switch(elementType)
 		{
 			case ElementTypes.TITLE:
 				<h1>@element.Text</h1>
+				break;
+			case ElementTypes.LINK:
+				<a href="@element.Hints[HintNames.URL]" target="_blank">@element.Text</a>
 				break;
 		}
 	}
@@ -27,31 +30,31 @@
 @switch(display?.Prompt?.PromptType)
 {
 	case DialogPromptType.PROMPT_CHOOSE:
-		<p>@display.Prompt.Title</p>
+		<p class="prompt-title">@display.Prompt.Title</p>
 		foreach(int index in Enumerable.Range(0, display.Prompt.Choices.Length))
 		{
-			<button @onclick="()=>Choose(index)">@display.Prompt.Choices[index]</button>
+			<button class="choice-button" @onclick="()=>Choose(index)">@display.Prompt.Choices[index]</button>
 		}
 		break;
 	case DialogPromptType.PROMPT_INTEGER:
-		<p>@display.Prompt.Title</p>
+		<p class="prompt-title">@display.Prompt.Title</p>
 		<EditForm Model="@inputModel" OnValidSubmit="HandleInteger">
 			<InputNumber @bind-Value="@inputModel.IntegerValue" />
-			<button type="submit">GO!</button>
+			<button class="choice-button" type="submit">GO!</button>
 		</EditForm>
 		break;
 	case DialogPromptType.PROMPT_DOUBLE:
-		<p>@display.Prompt.Title</p>
+		<p class="prompt-title">@display.Prompt.Title</p>
 		<EditForm Model="@inputModel" OnValidSubmit="HandleDouble">
 			<InputNumber @bind-Value="@inputModel.DoubleValue" />
-			<button type="submit">GO!</button>
+			<button class="choice-button" type="submit">GO!</button>
 		</EditForm>
 		break;
 	case DialogPromptType.PROMPT_STRING:
-		<p>@display.Prompt.Title</p>
+		<p class="prompt-title">@display.Prompt.Title</p>
 		<EditForm Model="@inputModel" OnValidSubmit="HandleString">
 			<InputText @bind-Value="@inputModel.StringValue" />
-			<button type="submit">GO!</button>
+			<button class="choice-button" type="submit">GO!</button>
 		</EditForm>
 		break;
 }

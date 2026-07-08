@@ -11,6 +11,8 @@ Public Class Title
 
     Public Overrides Function Run() As IDialogPrompt
         Context.Render("Yermom's Tits of SPLORR!!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.TITLE}})
+        Context.Render("A Production of TheGrumpyGameDev")
+        Context.Render("Sponsored by: UMLAUT.FYI!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.LINK}, {HintNames.URL, "https://umlaut.fyi/"}})
         Return DialogPrompt.CreateChoicePrompt(
             "",
             DialogChoice.Create(True, "OK", MainMenu.Launch(Context, Model, PreviousDialog)))
