@@ -7,4 +7,5 @@ Public Class WorldData
     Public Property AvatarId As Guid?
     Public Property Characters As New Dictionary(Of Guid, CharacterData)
     Public Property Routes As New Dictionary(Of Guid, RouteData)
+    Public Property Inventories As New Dictionary(Of Guid, InventoryData)
 End Class
