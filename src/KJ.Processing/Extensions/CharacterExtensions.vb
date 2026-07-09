@@ -7,7 +7,7 @@ Friend Module CharacterExtensions
         Return If(character.World.Avatar?.CharacterId = character.CharacterId, False)
     End Function
     <Extension>
-    Private Sub AddMessage(
+    Friend Sub AddMessage(
                           character As ICharacter,
                           text As String,
                           Optional hints As IDictionary(Of String, String) = Nothing)
@@ -19,5 +19,12 @@ Friend Module CharacterExtensions
     Friend Sub Look(character As ICharacter)
         Dim location = character.Location
         character.AddMessage($"{character.GetName()} is in {location.GetName()}!")
+        Dim routes = location.Routes
+        If routes.Any() Then
+            character.AddMessage($"Exits:")
+            For Each route In routes
+                character.AddMessage($"- {route.Direction}({route.GetName})")
+            Next
+        End If
     End Sub
 End Module

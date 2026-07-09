@@ -5,4 +5,5 @@ Public Interface ILocation
     ReadOnly Property HasRoutes As Boolean
     Function CreateCharacter(Optional initialize As CharacterInitializer = Nothing) As ICharacter
     Function CreateRoute(direction As String, destination As ILocation, Optional initialize As RouteInitializer = Nothing) As IRoute
+    ReadOnly Property Routes As IEnumerable(Of IRoute)
 End Interface

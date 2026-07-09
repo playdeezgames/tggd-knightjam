@@ -17,9 +17,14 @@ Friend Class MoveMenu
     Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
-                Append(AddressOf ChooseNeverMind)
+                Append(AddressOf ChooseNeverMind).
+                Concat(Model.Exits.All.Select(AddressOf ChooseExit))
         End Get
     End Property
+
+    Private Shared Function ChooseExit(exitModel As IExitModel) As LaunchDelegate
+        Return Function(c, m, p) DialogChoice.CreateEnabled($"{exitModel.Name}({exitModel.Direction})", MoveActivity.Launch(c, m, p, exitModel))
+    End Function
 
     Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
         Return DialogChoice.CreateEnabled("Never Mind", InPlay.Launch(context, model, previousDialog))
