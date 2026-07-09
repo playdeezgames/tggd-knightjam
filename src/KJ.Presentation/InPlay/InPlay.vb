@@ -13,6 +13,6 @@ Friend Class InPlay
     End Function
 
     Public Overrides Function Run() As IDialogPrompt
-        Return GameMenu.Launch(Context, Model, PreviousDialog).Invoke().Run()
+        Return NavigationMenu.Launch(Context, Model, PreviousDialog).Invoke().Run()
     End Function
 End Class

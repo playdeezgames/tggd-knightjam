@@ -22,7 +22,7 @@ Friend Class MainMenu
         End Get
     End Property
 
-    Private Function ChooseQuit(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+    Private Function ChooseQuit(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
         Return DialogChoice.Create(model.IsQuittable, "Quit", AddressOf ConfirmQuit)
     End Function
 
@@ -35,7 +35,7 @@ Friend Class MainMenu
                 Launch(Context, Model, PreviousDialog)).Invoke()
     End Function
 
-    Private Function ChooseEmbark(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As IDialogChoice
+    Private Function ChooseEmbark(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
         Return DialogChoice.CreateEnabled("Embark!", ChooseNamePrompt.Launch(context, model, PreviousDialog))
     End Function
 

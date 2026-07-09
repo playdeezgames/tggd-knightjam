@@ -10,4 +10,8 @@ Friend Module EntityExtensions
     Friend Sub SetDescription(entity As IKJEntity, description As String)
         entity.SetMetadata(Metadatas.DESCRIPTION, description)
     End Sub
+    <Extension>
+    Friend Function GetName(entity As IKJEntity) As String
+        Return entity.GetMetadata(Metadatas.NAME)
+    End Function
 End Module

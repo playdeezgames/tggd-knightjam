@@ -17,7 +17,7 @@ Friend Class Location
         End Get
     End Property
 
-    Friend Shared Function Create(world As World, data As WorldData, locationId As Guid?) As ILocation
+    Friend Shared Function Create(world As IWorld, data As WorldData, locationId As Guid?) As ILocation
         Return If(locationId.HasValue, New Location(world, data, locationId.Value), Nothing)
     End Function
 
