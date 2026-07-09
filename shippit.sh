@@ -10,7 +10,7 @@ rm -f ./pub-linux/*.pdb
 rm -f ./pub-windows/*.pdb
 rm -f ./pub-mac/*.pdb
 rm -f ./pub-html/*.pdb
-butler push pub-windows thegrumpygamedev/yermoms-tits-of-splorr:windows
-butler push pub-linux thegrumpygamedev/yermoms-tits-of-splorr:linux
-butler push pub-mac thegrumpygamedev/yermoms-tits-of-splorr:mac
-butler push pub-html/wwwroot thegrumpygamedev/yermoms-tits-of-splorr:html
+butler push pub-windows thegrumpygamedev/authentic-experience-of-splorr:windows
+butler push pub-linux thegrumpygamedev/authentic-experience-of-splorr:linux
+butler push pub-mac thegrumpygamedev/authentic-experience-of-splorr:mac
+butler push pub-html/wwwroot thegrumpygamedev/authentic-experience-of-splorr:html

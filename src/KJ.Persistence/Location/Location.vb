@@ -32,4 +32,16 @@ Friend Class Location
         initialize?.Invoke(result)
         Return result
     End Function
+
+    Public Function CreateRoute(direction As String, destination As ILocation, Optional initialize As RouteInitializer = Nothing) As IRoute Implements ILocation.CreateRoute
+        Dim routeId = Guid.NewGuid
+        _data.Routes(routeId) = New RouteData With
+            {
+                .DestinationLocationId = destination.LocationId
+            }
+        Data.RouteIds(direction) = routeId
+        Dim result As IRoute = Route.Create(World, _data, direction, routeId)
+        initialize?.Invoke(result)
+        Return result
+    End Function
 End Class

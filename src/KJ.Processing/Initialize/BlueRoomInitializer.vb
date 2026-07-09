@@ -7,8 +7,15 @@ Friend Module BlueRoomInitializer
                    location.SetDescription("This is the Blue Room. You feel like you may have been here before.")
                    context.BlueRoom = location
                    location.CreateCharacter(InitializeAvatar(context))
+                   location.CreateRoute(Directions.OUT, context.SouthWestTown, AddressOf InitializeBlueRoomDoor)
+                   context.SouthWestTown.CreateRoute(Directions.[IN], location, AddressOf InitializeBlueRoomDoor)
                End Sub
     End Function
+
+    Private Sub InitializeBlueRoomDoor(route As IRoute)
+        route.SetName("blue door")
+        route.SetDescription("This is a blue door.")
+    End Sub
 
     Private Function InitializeAvatar(context As IInitializationContext) As CharacterInitializer
         Return Sub(character)
