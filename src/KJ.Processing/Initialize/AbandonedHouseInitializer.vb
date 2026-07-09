@@ -7,8 +7,14 @@ Friend Module AbandonedHouseInitializer
                    location.SetDescription("This house is abandoned. The yard is overgrown. The doors are ripped off, and the windows are made of sheetgoods. There is probably a klonkku here.")
                    location.CreateRoute(Directions.OUT, context.SouthTown, AddressOf InitializeOpenDoorway)
                    context.SouthTown.CreateRoute(Directions.IN, location, AddressOf InitializeOpenDoorway)
+                   location.Inventory.CreateItem(AddressOf InitializeDestroyedPrinter)
                End Sub
     End Function
+
+    Private Sub InitializeDestroyedPrinter(item As IItem)
+        item.SetName("destroyed printer")
+        item.SetDescription("This printer looks like it has been thoroughly bashed to smithereens with a cricket bat.")
+    End Sub
 
     Private Sub InitializeOpenDoorway(route As IRoute)
         route.SetName("open doorway")

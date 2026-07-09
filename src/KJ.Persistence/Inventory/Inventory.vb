@@ -23,4 +23,16 @@ Friend Class Inventory
     Friend Shared Function Create(world As IWorld, data As WorldData, inventoryId As Guid?) As IInventory
         Return If(inventoryId.HasValue, New Inventory(world, data, inventoryId.Value), Nothing)
     End Function
+
+    Public Function CreateItem(Optional initializer As ItemInitializer = Nothing) As IItem Implements IInventory.CreateItem
+        Dim itemId = Guid.NewGuid
+        _data.Items(itemId) = New ItemData With
+            {
+                .InventoryId = InventoryId
+            }
+        Data.ItemIds.Add(itemId)
+        Dim result As IItem = Item.Create(world, _data, itemId)
+        initializer?.Invoke(result)
+        Return result
+    End Function
 End Class
