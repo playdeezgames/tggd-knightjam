@@ -15,6 +15,10 @@ Public Class World
     Public Overrides Sub Clear()
         MyBase.Clear()
         ClearMessages()
+        Data.AvatarId = Nothing
+        Data.Characters.Clear()
+        Data.Locations.Clear()
+        Data.Routes.Clear()
     End Sub
 
     Protected Overrides ReadOnly Property Data As WorldData

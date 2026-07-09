@@ -1,7 +1,7 @@
 ﻿Imports KJ.Processing
 Imports TGGD.Presentation
 
-Friend MustInherit Class BaseKJPickerMenu
+Friend MustInherit Class KJPickerMenu
     Inherits BasePickerMenu(Of IDisplayContext, IWorldModel)
 
     Protected Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource)

@@ -2,7 +2,7 @@
 Imports TGGD.Presentation
 
 Friend Class NavigationMenu
-    Inherits BaseKJPickerMenu
+    Inherits KJPickerMenu
 
     Private Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource)
         MyBase.New(context, model, previousDialog)

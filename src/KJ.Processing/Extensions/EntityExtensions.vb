@@ -14,4 +14,8 @@ Friend Module EntityExtensions
     Friend Function GetName(entity As IKJEntity) As String
         Return entity.GetMetadata(Metadatas.NAME)
     End Function
+    <Extension>
+    Friend Function GetDescription(entity As IKJEntity) As String
+        Return entity.GetMetadata(Metadatas.DESCRIPTION)
+    End Function
 End Module
