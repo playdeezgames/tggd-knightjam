@@ -6,4 +6,5 @@ Public Interface IWorld
     ReadOnly Property Messages As IEnumerable(Of IMessage)
     Sub ClearMessages()
     Sub AddMessage(text As String, Optional hints As IDictionary(Of String, String) = Nothing)
+    Function CreateLocation(Optional initializer As LocationInitializer = Nothing) As ILocation
 End Interface

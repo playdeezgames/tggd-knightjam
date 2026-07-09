@@ -4,6 +4,7 @@ Imports KJ.Persistence
 Friend Module WorldInitializer
     <Extension>
     Friend Sub Initialize(world As IWorld, context As IInitializationContext)
-        'TODO: initialize world
+        world.Clear()
+        world.CreateLocation(BlueRoomInitializer.Initialize(context))
     End Sub
 End Module

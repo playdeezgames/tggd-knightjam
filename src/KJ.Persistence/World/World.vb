@@ -12,6 +12,11 @@ Public Class World
         Me.persister = persister
     End Sub
 
+    Public Overrides Sub Clear()
+        MyBase.Clear()
+        ClearMessages()
+    End Sub
+
     Protected Overrides ReadOnly Property Data As WorldData
 
     Public ReadOnly Property Messages As IEnumerable(Of IMessage) Implements IWorld.Messages
@@ -52,4 +57,12 @@ Public Class World
         End If
         Data.Messages.Add(messageData)
     End Sub
+
+    Public Function CreateLocation(Optional initializer As LocationInitializer = Nothing) As ILocation Implements IWorld.CreateLocation
+        Dim locationId = Guid.NewGuid
+        Data.Locations(locationId) = New LocationData
+        Dim result = Location.Create(Me, Data, locationId)
+        initializer?.Invoke(result)
+        Return result
+    End Function
 End Class
