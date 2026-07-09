@@ -7,4 +7,5 @@ Public Interface IWorldModel
     Sub Embark(chosenName As String)
     Sub Abandon()
     ReadOnly Property Messages As IEnumerable(Of IMessage)
+    ReadOnly Property Exits As IExitsModel
 End Interface

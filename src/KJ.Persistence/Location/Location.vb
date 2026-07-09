@@ -11,6 +11,12 @@ Friend Class Location
 
     Public ReadOnly Property LocationId As Guid Implements ILocation.LocationId
 
+    Public ReadOnly Property HasRoutes As Boolean Implements ILocation.HasRoutes
+        Get
+            Return Data.RouteIds.Count <> 0
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As LocationData
         Get
             Return _data.Locations(LocationId)

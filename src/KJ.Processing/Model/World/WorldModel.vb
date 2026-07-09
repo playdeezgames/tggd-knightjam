@@ -19,6 +19,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property Exits As IExitsModel Implements IWorldModel.Exits
+        Get
+            Return ExitsModel.Create(Entity)
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))
