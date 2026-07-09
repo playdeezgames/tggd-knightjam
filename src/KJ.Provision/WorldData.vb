@@ -4,4 +4,6 @@ Public Class WorldData
     Inherits EntityData
     Public Property Messages As New List(Of MessageData)
     Public Property Locations As New Dictionary(Of Guid, LocationData)
+    Public Property AvatarId As Guid?
+    Public Property Characters As New Dictionary(Of Guid, CharacterData)
 End Class
