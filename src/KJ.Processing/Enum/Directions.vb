@@ -5,4 +5,7 @@
     Friend Const WEST As String = NameOf(WEST)
     Friend Const OUT As String = NameOf(OUT)
     Friend Const [IN] As String = NameOf([IN])
+#If DEBUG Then
+    Friend Const SIDEWAYS As String = NameOf(SIDEWAYS)
+#End If
 End Module

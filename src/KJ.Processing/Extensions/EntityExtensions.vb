@@ -7,15 +7,15 @@ Friend Module EntityExtensions
         entity.SetMetadata(Metadatas.NAME, name)
     End Sub
     <Extension>
-    Friend Sub SetDescription(entity As IKJEntity, description As String)
-        entity.SetMetadata(Metadatas.DESCRIPTION, description)
+    Friend Sub SetFlavor(entity As IKJEntity, description As String)
+        entity.SetMetadata(Metadatas.FLAVOR, description)
     End Sub
     <Extension>
     Friend Function GetName(entity As IKJEntity) As String
         Return entity.GetMetadata(Metadatas.NAME)
     End Function
     <Extension>
-    Friend Function GetDescription(entity As IKJEntity) As String
-        Return entity.GetMetadata(Metadatas.DESCRIPTION)
+    Friend Function GetFlavor(entity As IKJEntity) As String
+        Return entity.GetMetadata(Metadatas.FLAVOR)
     End Function
 End Module

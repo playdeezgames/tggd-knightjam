@@ -28,6 +28,8 @@ Friend Class InitializationContext
 
     Public Property NorthWestTown As ILocation Implements IInitializationContext.NorthWestTown
 
+    Public Property AbandonedHouse As ILocation Implements IInitializationContext.AbandonedHouse
+
     Friend Shared Function Create(chosenName As String) As IInitializationContext
         Return New InitializationContext(chosenName)
     End Function

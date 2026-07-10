@@ -12,4 +12,5 @@ Friend Interface IInitializationContext
     Property NorthEastTown As ILocation
     Property NorthTown As ILocation
     Property NorthWestTown As ILocation
+    Property AbandonedHouse As ILocation
 End Interface

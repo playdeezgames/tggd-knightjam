@@ -1,4 +1,4 @@
 ﻿Friend Module Metadatas
-    Friend Const DESCRIPTION As String = NameOf(DESCRIPTION)
+    Friend Const FLAVOR As String = NameOf(FLAVOR)
     Friend Const NAME As String = NameOf(NAME)
 End Module

@@ -20,7 +20,7 @@ Friend Class ItemModel
         Dim character = world.Avatar
         world.ClearMessages()
         character.AddMessage($"{character.GetName} takes {item.GetName}.")
-        character.AddMessage(item.GetDescription)
+        character.AddMessage(item.GetFlavor)
         item.Inventory = character.Inventory
     End Sub
 

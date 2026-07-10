@@ -27,7 +27,7 @@ Friend Class ExitModel
         Dim character = world.Avatar
         character.Location = route.Destination
         character.AddMessage($"{character.GetName} goes {Direction}.")
-        character.AddMessage(route.GetDescription())
+        character.AddMessage(route.GetFlavor())
         character.Look()
     End Sub
 

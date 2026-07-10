@@ -31,13 +31,13 @@ Friend Module TownInitializer
 
     Private Sub InitializeRoad(route As IRoute)
         route.SetName("road")
-        route.SetDescription("It is a road.")
+        route.SetFlavor("You walk along a well traveled road.")
     End Sub
 
     Private Function InitializeSouthEastTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("southeast corner of town")
-                   location.SetDescription("This is the southeast corner of town.")
+                   location.SetFlavor("You find yerself in the southeast corner of town.")
                    context.SouthEastTown = location
                End Sub
     End Function
@@ -45,7 +45,7 @@ Friend Module TownInitializer
     Private Function InitializeSouthTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("south side of town")
-                   location.SetDescription("This is the south side of town.")
+                   location.SetFlavor("You find yerself in the south side of town.")
                    context.SouthTown = location
                End Sub
     End Function
@@ -53,7 +53,7 @@ Friend Module TownInitializer
     Private Function InitializeSouthWestTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("southwest corner of town")
-                   location.SetDescription("This is the southwest corner of town.")
+                   location.SetFlavor("You find yerself in the southwest corner of town.")
                    context.SouthWestTown = location
                End Sub
     End Function
@@ -61,7 +61,7 @@ Friend Module TownInitializer
     Private Function InitializeEastTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("east side of town")
-                   location.SetDescription("This is the east side of town.")
+                   location.SetFlavor("You find yerself in the east side of town.")
                    context.EastTown = location
                End Sub
     End Function
@@ -69,7 +69,7 @@ Friend Module TownInitializer
     Private Function InitializeCenterTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("town center")
-                   location.SetDescription("This is the town center.")
+                   location.SetFlavor("You find yerself in the town center.")
                    context.CenterTown = location
                End Sub
     End Function
@@ -77,7 +77,7 @@ Friend Module TownInitializer
     Private Function InitializeWestTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("west side of town")
-                   location.SetDescription("This is the west side of town.")
+                   location.SetFlavor("You find yerself in the west side of town.")
                    context.WestTown = location
                End Sub
     End Function
@@ -85,7 +85,7 @@ Friend Module TownInitializer
     Private Function InitializeNorthEastTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("northeast corner of town")
-                   location.SetDescription("This is the northeast corner of town.")
+                   location.SetFlavor("You find yerself in the northeast corner of town.")
                    context.NorthEastTown = location
                End Sub
     End Function
@@ -93,7 +93,7 @@ Friend Module TownInitializer
     Private Function InitializeNorthTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("north side of town")
-                   location.SetDescription("This is the north side of town.")
+                   location.SetFlavor("You find yerself in the north side of town.")
                    context.NorthTown = location
                End Sub
     End Function
@@ -101,7 +101,7 @@ Friend Module TownInitializer
     Private Function InitializeNorthWestTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("northwest corner of town")
-                   location.SetDescription("This is the northwest corner of town.")
+                   location.SetFlavor("You find yerself in the northwest corner of town.")
                    context.NorthWestTown = location
                End Sub
     End Function

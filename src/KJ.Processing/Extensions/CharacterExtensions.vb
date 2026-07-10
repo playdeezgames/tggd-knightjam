@@ -19,7 +19,7 @@ Friend Module CharacterExtensions
     Friend Sub Look(character As ICharacter)
         Dim location = character.Location
         character.AddMessage($"{character.GetName()} is in {location.GetName()}!")
-        character.AddMessage(location.GetDescription())
+        character.AddMessage(location.GetFlavor())
         ShowExits(character, location)
         If location.Inventory.HasItems Then
             character.AddMessage("There are items on the ground.")
