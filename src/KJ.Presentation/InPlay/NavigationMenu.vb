@@ -19,10 +19,18 @@ Friend Class NavigationMenu
             Return Enumerable.Empty(Of LaunchDelegate).
                 Append(AddressOf ChooseMove).
                 Append(AddressOf ChooseGround).
+                Append(AddressOf ChooseInventory).
                 Append(AddressOf ChooseLook).
                 Append(AddressOf ChooseGameMenu)
         End Get
     End Property
+
+    Private Function ChooseInventory(
+                                    context As IDisplayContext,
+                                    model As IWorldModel,
+                                    previousDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Inventory.HasItems, "Inventory...", InventoryMenu.Launch(context, model, previousDialog))
+    End Function
 
     Private Function ChooseLook(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
         Return DialogChoice.CreateEnabled("Look", LookActivity.Launch(context, model, previousDialog))

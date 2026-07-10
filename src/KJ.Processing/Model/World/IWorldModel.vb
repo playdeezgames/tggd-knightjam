@@ -10,4 +10,5 @@ Public Interface IWorldModel
     ReadOnly Property Messages As IEnumerable(Of IMessage)
     ReadOnly Property Exits As IExitsModel
     ReadOnly Property Ground As IGroundModel
+    ReadOnly Property Inventory As IInventoryModel
 End Interface

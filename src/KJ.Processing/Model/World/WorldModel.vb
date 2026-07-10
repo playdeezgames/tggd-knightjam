@@ -31,6 +31,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property Inventory As IInventoryModel Implements IWorldModel.Inventory
+        Get
+            Return InventoryModel.Create(Entity)
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))
