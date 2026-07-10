@@ -6,6 +6,7 @@ Public Interface IWorldModel
     ReadOnly Property IsQuittable As Boolean
     Sub Embark(chosenName As String)
     Sub Abandon()
+    Sub Look()
     ReadOnly Property Messages As IEnumerable(Of IMessage)
     ReadOnly Property Exits As IExitsModel
     ReadOnly Property Ground As IGroundModel

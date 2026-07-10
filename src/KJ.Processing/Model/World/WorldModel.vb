@@ -40,6 +40,11 @@ Public Class WorldModel
         Entity.Clear()
     End Sub
 
+    Public Sub Look() Implements IWorldModel.Look
+        Entity.ClearMessages()
+        Entity.Avatar.Look()
+    End Sub
+
     Public Shared Async Function Create(quittable As Boolean, persister As IPersister) As Task(Of IWorldModel)
         Dim entity As IWorld
         Try
