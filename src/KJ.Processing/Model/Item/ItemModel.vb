@@ -15,6 +15,15 @@ Friend Class ItemModel
         End Get
     End Property
 
+    Public Sub Take() Implements IItemModel.Take
+        Dim world = item.World
+        Dim character = world.Avatar
+        world.ClearMessages()
+        character.AddMessage($"{character.GetName} takes {item.GetName}.")
+        character.AddMessage(item.GetDescription)
+        item.Inventory = character.Inventory
+    End Sub
+
     Friend Shared Function Create(item As IItem) As IItemModel
         Return New ItemModel(item)
     End Function

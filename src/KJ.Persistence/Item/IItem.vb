@@ -2,4 +2,5 @@
 Public Interface IItem
     Inherits IKJEntity
     ReadOnly Property ItemId As Guid
+    Property Inventory As IInventory
 End Interface

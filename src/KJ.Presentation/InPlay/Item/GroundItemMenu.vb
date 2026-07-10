@@ -25,9 +25,14 @@ Friend Class GroundItemMenu
     Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
-                Append(AddressOf ChooseNeverMind)
+                Append(AddressOf ChooseNeverMind).
+                Append(AddressOf ChooseTake)
         End Get
     End Property
+
+    Private Function ChooseTake(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Take", TakeItemActivity.Launch(context, model, previousDialog, itemModel))
+    End Function
 
     Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, e As DialogSource, itemModel As IItemModel) As DialogSource
         Return Function() New GroundItemMenu(c, m, e, itemModel)
