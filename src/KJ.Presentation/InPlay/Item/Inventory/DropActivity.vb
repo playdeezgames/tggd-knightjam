@@ -2,7 +2,7 @@
 Imports TGGD.Presentation
 
 Friend Class DropActivity
-    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits KJDialog
 
     Private ReadOnly itemModel As IItemModel
 

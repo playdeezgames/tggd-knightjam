@@ -2,7 +2,7 @@ Imports KJ.Processing
 Imports TGGD.Presentation
 
 Public Class Title
-    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits KJDialog
     Implements IDialog
 
     Private Sub New(context As IDisplayContext, model As IWorldModel, previous As DialogSource)

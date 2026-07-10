@@ -2,7 +2,7 @@
 Imports TGGD.Presentation
 
 Friend Class LookActivity
-    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits KJDialog
 
     Private Sub New(context As IDisplayContext, model As IWorldModel, previous As DialogSource)
         MyBase.New(context, model, previous)

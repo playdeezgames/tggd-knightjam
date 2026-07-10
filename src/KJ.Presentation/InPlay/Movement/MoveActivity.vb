@@ -2,7 +2,7 @@
 Imports TGGD.Presentation
 
 Friend Class MoveActivity
-    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits KJDialog
 
     Private ReadOnly exitModel As IExitModel
 

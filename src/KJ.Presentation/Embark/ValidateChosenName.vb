@@ -2,7 +2,7 @@
 Imports TGGD.Presentation
 
 Friend Class ValidateChosenName
-    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits KJDialog
     Const VALID_NAME = "Olen Kyrpa"
     Private ReadOnly chosenName As String
 

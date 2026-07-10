@@ -2,7 +2,7 @@
 Imports TGGD.Presentation
 
 Friend Class EmbarkActivity
-    Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
+    Inherits KJDialog
 
     Private ReadOnly chosenName As String
 
