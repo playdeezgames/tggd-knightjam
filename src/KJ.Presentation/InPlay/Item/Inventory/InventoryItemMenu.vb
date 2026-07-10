@@ -1,0 +1,40 @@
+﻿
+Imports KJ.Processing
+Imports TGGD.Presentation
+
+Friend Class InventoryItemMenu
+    Inherits KJPickerMenu
+
+    Private ReadOnly itemModel As IItemModel
+
+    Private Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource, itemModel As IItemModel)
+        MyBase.New(context, model, previousDialog)
+        Me.itemModel = itemModel
+    End Sub
+
+    Public Overrides ReadOnly Property PromptText As String
+        Get
+            Return $"Do what with {itemModel.Name}?"
+        End Get
+    End Property
+
+    Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
+        Get
+            Return Enumerable.Empty(Of LaunchDelegate).
+                Append(AddressOf ChooseNeverMind).
+                Append(AddressOf ChooseDrop)
+        End Get
+    End Property
+
+    Private Function ChooseDrop(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Drop", DropActivity.Launch(context, model, previousDialog, itemModel))
+    End Function
+
+    Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, p As DialogSource, itemModel As IItemModel) As DialogSource
+        Return Function() New InventoryItemMenu(c, m, p, itemModel)
+    End Function
+
+    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Never Mind", InventoryMenu.Launch(context, model, previousDialog))
+    End Function
+End Class

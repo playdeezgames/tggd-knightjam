@@ -18,9 +18,16 @@ Friend Class InventoryMenu
     Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
-                Append(AddressOf ChooseNeverMind)
+                Append(AddressOf ChooseNeverMind).
+                Concat(Model.Inventory.Items.Select(AddressOf ChooseItem))
         End Get
     End Property
+
+    Private Function ChooseItem(itemModel As IItemModel) As LaunchDelegate
+        Return Function(c, m, p)
+                   Return DialogChoice.CreateEnabled(itemModel.Name, InventoryItemMenu.Launch(c, m, p, itemModel))
+               End Function
+    End Function
 
     Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As DialogSource
         Return Function()

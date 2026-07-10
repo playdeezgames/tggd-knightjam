@@ -24,6 +24,14 @@ Friend Class ItemModel
         item.Inventory = character.Inventory
     End Sub
 
+    Public Sub Drop() Implements IItemModel.Drop
+        Dim world = item.World
+        Dim character = world.Avatar
+        world.ClearMessages()
+        character.AddMessage($"{character.GetName} drops {item.GetName}.")
+        item.Inventory = character.Location.Inventory
+    End Sub
+
     Friend Shared Function Create(item As IItem) As IItemModel
         Return New ItemModel(item)
     End Function
