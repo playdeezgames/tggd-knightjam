@@ -8,8 +8,14 @@ Friend Module AbandonedHouseInitializer
                    location.CreateRoute(Directions.OUT, context.SouthTown, AddressOf InitializeOpenDoorway)
                    context.SouthTown.CreateRoute(Directions.IN, location, AddressOf InitializeOpenDoorway)
                    location.Inventory.CreateItem(AddressOf InitializeDestroyedPrinter)
+                   location.Inventory.CreateItem(AddressOf InitializePkasticBag)
                End Sub
     End Function
+
+    Private Sub InitializePkasticBag(item As IItem)
+        item.SetName("pkastic bag")
+        item.SetDescription("No, that is not a misspelling. This item is made from pkastic. You have mixed feelings about reaching inside.")
+    End Sub
 
     Private Sub InitializeDestroyedPrinter(item As IItem)
         item.SetName("destroyed printer")

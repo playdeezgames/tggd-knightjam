@@ -18,9 +18,14 @@ Friend Class NavigationMenu
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
                 Append(AddressOf ChooseMove).
+                Append(AddressOf ChooseGround).
                 Append(AddressOf ChooseGameMenu)
         End Get
     End Property
+
+    Private Function ChooseGround(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Ground.HasItems, "Ground...", GroundMenu.Launch(context, model, previousDialog))
+    End Function
 
     Private Function ChooseMove(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
         Return DialogChoice.Create(model.Exits.HasAny, "Move...", MoveMenu.Launch(context, model, previousDialog))

@@ -20,6 +20,18 @@ Friend Class Inventory
 
     Public ReadOnly Property InventoryId As Guid Implements IInventory.InventoryId
 
+    Public ReadOnly Property HasItems As Boolean Implements IInventory.HasItems
+        Get
+            Return Data.ItemIds.Count <> 0
+        End Get
+    End Property
+
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements IInventory.Items
+        Get
+            Return Data.ItemIds.Select(Function(x) Item.Create(world, _data, x))
+        End Get
+    End Property
+
     Friend Shared Function Create(world As IWorld, data As WorldData, inventoryId As Guid?) As IInventory
         Return If(inventoryId.HasValue, New Inventory(world, data, inventoryId.Value), Nothing)
     End Function

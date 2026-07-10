@@ -14,6 +14,7 @@ Friend MustInherit Class InventoriedEntity(Of TData As InventoriedEntityData)
             If Not inventoryId.HasValue Then
                 inventoryId = Guid.NewGuid
                 _data.Inventories(inventoryId.Value) = New InventoryData
+                Data.InventoryId = inventoryId.Value
             End If
             Return Persistence.Inventory.Create(World, _data, inventoryId)
         End Get

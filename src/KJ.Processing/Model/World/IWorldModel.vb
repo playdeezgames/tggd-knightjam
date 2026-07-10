@@ -8,4 +8,5 @@ Public Interface IWorldModel
     Sub Abandon()
     ReadOnly Property Messages As IEnumerable(Of IMessage)
     ReadOnly Property Exits As IExitsModel
+    ReadOnly Property Ground As IGroundModel
 End Interface

@@ -25,6 +25,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property Ground As IGroundModel Implements IWorldModel.Ground
+        Get
+            Return GroundModel.Create(Entity)
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))

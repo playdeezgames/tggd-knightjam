@@ -20,6 +20,13 @@ Friend Module CharacterExtensions
         Dim location = character.Location
         character.AddMessage($"{character.GetName()} is in {location.GetName()}!")
         character.AddMessage(location.GetDescription())
+        ShowExits(character, location)
+        If location.Inventory.HasItems Then
+            character.AddMessage("There are items on the ground.")
+        End If
+    End Sub
+
+    Private Sub ShowExits(character As ICharacter, location As ILocation)
         Dim routes = location.Routes
         If routes.Any() Then
             character.AddMessage($"Exits:")
