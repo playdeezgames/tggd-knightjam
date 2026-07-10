@@ -5,6 +5,8 @@
     Friend Const WEST As String = NameOf(WEST)
     Friend Const OUT As String = NameOf(OUT)
     Friend Const [IN] As String = NameOf([IN])
+    Friend Const UP As String = NameOf(UP)
+    Friend Const DOWN As String = NameOf(DOWN)
 #If DEBUG Then
     Friend Const SIDEWAYS As String = NameOf(SIDEWAYS)
 #End If

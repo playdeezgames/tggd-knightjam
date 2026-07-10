@@ -10,8 +10,23 @@ Friend Module AbandonedHouseInitializer
                    location.Inventory.CreateItem(AddressOf InitializeDestroyedPrinter)
                    location.Inventory.CreateItem(AddressOf InitializePkasticBag)
                    context.AbandonedHouse = location
+                   Dim basement = location.World.CreateLocation(InitializeBasement(location))
                End Sub
     End Function
+
+    Private Function InitializeBasement(house As ILocation) As LocationInitializer
+        Return Sub(location)
+                   location.SetName("basement")
+                   location.SetFlavor("This is the basement of the abandoned house. The stench of klonkku is overpowering.")
+                   location.CreateRoute(Directions.UP, house, AddressOf InitializeStairs)
+                   house.CreateRoute(Directions.DOWN, location, AddressOf InitializeStairs)
+               End Sub
+    End Function
+
+    Private Sub InitializeStairs(route As IRoute)
+        route.SetName("stairs")
+        route.SetFlavor("You go up(or down) the stairs. The dev couldn't be bothered to make two different flavor texts.")
+    End Sub
 
     Private Sub InitializePkasticBag(item As IItem)
         item.SetName("pkastic bag")
