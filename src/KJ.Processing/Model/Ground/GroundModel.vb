@@ -15,6 +15,12 @@ Friend Class GroundModel
         End Get
     End Property
 
+    Public ReadOnly Property Items As IEnumerable(Of IItemModel) Implements IGroundModel.Items
+        Get
+            Return world.Avatar.Location.Inventory.Items.Select(AddressOf ItemModel.Create)
+        End Get
+    End Property
+
     Friend Shared Function Create(entity As IWorld) As IGroundModel
         Return New GroundModel(entity)
     End Function
