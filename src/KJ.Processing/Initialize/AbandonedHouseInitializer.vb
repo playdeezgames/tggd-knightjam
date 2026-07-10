@@ -20,8 +20,14 @@ Friend Module AbandonedHouseInitializer
                    location.SetFlavor("This is the basement of the abandoned house. The stench of klonkku is overpowering.")
                    location.CreateRoute(Directions.UP, house, AddressOf InitializeStairs)
                    house.CreateRoute(Directions.DOWN, location, AddressOf InitializeStairs)
+                   location.CreateFeature(AddressOf InitializeKlonkkuCorpse)
                End Sub
     End Function
+
+    Private Sub InitializeKlonkkuCorpse(feature As IFeature)
+        feature.SetName("klonkku corpse")
+        feature.SetFlavor("You behold a very dead klonkku. It smells like you'd expect. For some reason, its left index finger is brown, and yer pretty sure that's not chocolate.")
+    End Sub
 
     Private Sub InitializeStairs(route As IRoute)
         route.SetName("stairs")

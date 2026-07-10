@@ -21,6 +21,7 @@ Public Class World
         Data.Routes.Clear()
         Data.Inventories.Clear()
         Data.Items.Clear()
+        Data.Features.Clear()
     End Sub
 
     Protected Overrides ReadOnly Property Data As WorldData
