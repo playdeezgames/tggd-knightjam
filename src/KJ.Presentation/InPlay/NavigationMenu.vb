@@ -4,8 +4,8 @@ Imports TGGD.Presentation
 Friend Class NavigationMenu
     Inherits KJPickerMenu
 
-    Private Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource)
-        MyBase.New(context, model, previousDialog)
+    Private Sub New(context As IDisplayContext, model As IWorldModel, previous As DialogSource)
+        MyBase.New(context, model, previous)
     End Sub
 
     Public Overrides ReadOnly Property PromptText As String
@@ -28,27 +28,27 @@ Friend Class NavigationMenu
     Private Function ChooseInventory(
                                     context As IDisplayContext,
                                     model As IWorldModel,
-                                    previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.Create(model.Inventory.HasItems, "Inventory...", InventoryMenu.Launch(context, model, previousDialog))
+                                    previous As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Inventory.HasItems, "Inventory...", InventoryMenu.Launch(context, model, previous))
     End Function
 
-    Private Function ChooseLook(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Look", LookActivity.Launch(context, model, previousDialog))
+    Private Function ChooseLook(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Look", LookActivity.Launch(context, model, previous))
     End Function
 
-    Private Function ChooseGround(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.Create(model.Ground.HasItems, "Ground...", GroundMenu.Launch(context, model, previousDialog))
+    Private Function ChooseGround(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Ground.HasItems, "Ground...", GroundMenu.Launch(context, model, previous))
     End Function
 
-    Private Function ChooseMove(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.Create(model.Exits.HasAny, "Move...", MoveMenu.Launch(context, model, previousDialog))
+    Private Function ChooseMove(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Exits.HasAny, "Move...", MoveMenu.Launch(context, model, previous))
     End Function
 
-    Private Function ChooseGameMenu(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Gämë Mënü", GameMenu.Launch(context, model, previousDialog))
+    Private Function ChooseGameMenu(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Gämë Mënü", GameMenu.Launch(context, model, previous))
     End Function
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As DialogSource
-        Return Function() New NavigationMenu(context, model, previousDialog)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
+        Return Function() New NavigationMenu(context, model, previous)
     End Function
 End Class

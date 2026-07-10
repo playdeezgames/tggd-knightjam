@@ -5,12 +5,12 @@ Public MustInherit Class BasePickerMenu(Of TContext As IDisplayContext, TModel A
     Public Delegate Function LaunchDelegate(
                                      context As TContext,
                                      model As TModel,
-                                     previousDialog As DialogSource) As IDialogChoice
+                                     previous As DialogSource) As IDialogChoice
 
     MustOverride ReadOnly Property PromptText As String
 
-    Protected Sub New(context As TContext, model As TModel, previousDialog As DialogSource)
-        MyBase.New(context, model, previousDialog)
+    Protected Sub New(context As TContext, model As TModel, previous As DialogSource)
+        MyBase.New(context, model, previous)
     End Sub
 
     Protected MustOverride ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)

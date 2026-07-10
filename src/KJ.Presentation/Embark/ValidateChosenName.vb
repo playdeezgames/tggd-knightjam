@@ -11,8 +11,8 @@ Friend Class ValidateChosenName
         Me.chosenName = chosenName
     End Sub
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource, chosenName As String) As DialogSource
-        Return Function() New ValidateChosenName(context, model, previousDialog, chosenName)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource, chosenName As String) As DialogSource
+        Return Function() New ValidateChosenName(context, model, previous, chosenName)
     End Function
 
     Public Overrides Function Run() As IDialogPrompt

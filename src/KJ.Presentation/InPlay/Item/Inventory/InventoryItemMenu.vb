@@ -7,8 +7,8 @@ Friend Class InventoryItemMenu
 
     Private ReadOnly itemModel As IItemModel
 
-    Private Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource, itemModel As IItemModel)
-        MyBase.New(context, model, previousDialog)
+    Private Sub New(context As IDisplayContext, model As IWorldModel, previous As DialogSource, itemModel As IItemModel)
+        MyBase.New(context, model, previous)
         Me.itemModel = itemModel
     End Sub
 
@@ -26,15 +26,15 @@ Friend Class InventoryItemMenu
         End Get
     End Property
 
-    Private Function ChooseDrop(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Drop", DropActivity.Launch(context, model, previousDialog, itemModel))
+    Private Function ChooseDrop(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Drop", DropActivity.Launch(context, model, previous, itemModel))
     End Function
 
     Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, p As DialogSource, itemModel As IItemModel) As DialogSource
         Return Function() New InventoryItemMenu(c, m, p, itemModel)
     End Function
 
-    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Never Mind", InventoryMenu.Launch(context, model, previousDialog))
+    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Never Mind", InventoryMenu.Launch(context, model, previous))
     End Function
 End Class

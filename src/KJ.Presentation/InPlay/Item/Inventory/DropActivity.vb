@@ -11,8 +11,8 @@ Friend Class DropActivity
         Me.itemModel = itemModel
     End Sub
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource, itemModel As IItemModel) As DialogSource
-        Return Function() New DropActivity(context, model, previousDialog, itemModel)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource, itemModel As IItemModel) As DialogSource
+        Return Function() New DropActivity(context, model, previous, itemModel)
     End Function
 
     Public Overrides Function Run() As IDialogPrompt

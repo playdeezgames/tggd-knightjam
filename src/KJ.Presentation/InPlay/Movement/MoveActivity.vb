@@ -11,8 +11,8 @@ Friend Class MoveActivity
         Me.exitModel = exitModel
     End Sub
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource, exitModel As IExitModel) As DialogSource
-        Return Function() New MoveActivity(context, model, previousDialog, exitModel)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource, exitModel As IExitModel) As DialogSource
+        Return Function() New MoveActivity(context, model, previous, exitModel)
     End Function
 
     Public Overrides Function Run() As IDialogPrompt

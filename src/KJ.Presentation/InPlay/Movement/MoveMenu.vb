@@ -26,11 +26,11 @@ Friend Class MoveMenu
         Return Function(c, m, p) DialogChoice.CreateEnabled($"{exitModel.Name}({exitModel.Direction})", MoveActivity.Launch(c, m, p, exitModel))
     End Function
 
-    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Never Mind", InPlay.Launch(context, model, previousDialog))
+    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Never Mind", InPlay.Launch(context, model, previous))
     End Function
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As DialogSource
-        Return Function() New MoveMenu(context, model, previousDialog)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
+        Return Function() New MoveMenu(context, model, previous)
     End Function
 End Class

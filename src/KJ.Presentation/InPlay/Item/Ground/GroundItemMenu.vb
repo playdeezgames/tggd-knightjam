@@ -10,9 +10,9 @@ Friend Class GroundItemMenu
     Private Sub New(
                    context As IDisplayContext,
                    model As IWorldModel,
-                   previousDialog As DialogSource,
+                   previous As DialogSource,
                    itemModel As IItemModel)
-        MyBase.New(context, model, previousDialog)
+        MyBase.New(context, model, previous)
         Me.itemModel = itemModel
     End Sub
 
@@ -30,15 +30,15 @@ Friend Class GroundItemMenu
         End Get
     End Property
 
-    Private Function ChooseTake(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Take", TakeItemActivity.Launch(context, model, previousDialog, itemModel))
+    Private Function ChooseTake(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Take", TakeItemActivity.Launch(context, model, previous, itemModel))
     End Function
 
-    Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, e As DialogSource, itemModel As IItemModel) As DialogSource
-        Return Function() New GroundItemMenu(c, m, e, itemModel)
+    Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, p As DialogSource, itemModel As IItemModel) As DialogSource
+        Return Function() New GroundItemMenu(c, m, p, itemModel)
     End Function
 
-    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Never Mind", GroundMenu.Launch(context, model, previousDialog))
+    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Never Mind", GroundMenu.Launch(context, model, previous))
     End Function
 End Class

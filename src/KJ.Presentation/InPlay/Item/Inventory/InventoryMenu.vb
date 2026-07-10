@@ -5,8 +5,8 @@ Imports TGGD.Presentation
 Friend Class InventoryMenu
     Inherits KJPickerMenu
 
-    Private Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource)
-        MyBase.New(context, model, previousDialog)
+    Private Sub New(context As IDisplayContext, model As IWorldModel, previous As DialogSource)
+        MyBase.New(context, model, previous)
     End Sub
 
     Public Overrides ReadOnly Property PromptText As String
@@ -29,16 +29,16 @@ Friend Class InventoryMenu
                End Function
     End Function
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As DialogSource
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
         Return Function()
                    If model.Inventory.HasItems Then
-                       Return New InventoryMenu(context, model, previousDialog)
+                       Return New InventoryMenu(context, model, previous)
                    End If
-                   Return InPlay.Launch(context, model, previousDialog).Invoke()
+                   Return InPlay.Launch(context, model, previous).Invoke()
                End Function
     End Function
 
-    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Never Mind", InPlay.Launch(context, model, previousDialog))
+    Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Never Mind", InPlay.Launch(context, model, previous))
     End Function
 End Class

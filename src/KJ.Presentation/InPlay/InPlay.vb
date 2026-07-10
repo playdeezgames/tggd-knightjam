@@ -8,8 +8,8 @@ Friend Class InPlay
         MyBase.New(context, model, previous)
     End Sub
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As DialogSource
-        Return Function() New InPlay(context, model, previousDialog)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
+        Return Function() New InPlay(context, model, previous)
     End Function
 
     Public Overrides Function Run() As IDialogPrompt

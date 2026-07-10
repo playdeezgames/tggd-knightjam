@@ -5,8 +5,8 @@ Public Class Title
     Inherits StackedModelDialog(Of IDisplayContext, IWorldModel)
     Implements IDialog
 
-    Private Sub New(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource)
-        MyBase.New(context, model, previousDialog)
+    Private Sub New(context As IDisplayContext, model As IWorldModel, previous As DialogSource)
+        MyBase.New(context, model, previous)
     End Sub
 
     Public Overrides Function Run() As IDialogPrompt
@@ -19,8 +19,8 @@ Public Class Title
             DialogChoice.Create(True, "OK", MainMenu.Launch(Context, Model, PreviousDialog)))
     End Function
 
-    Public Shared Function Launch(context As IDisplayContext, model As IWorldModel, previousDialog As DialogSource) As DialogSource
-        Return Function() New Title(context, model, previousDialog)
+    Public Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
+        Return Function() New Title(context, model, previous)
     End Function
 
 End Class
