@@ -10,4 +10,5 @@ Public Interface ILocation
     ReadOnly Property Features As IEnumerable(Of IFeature)
     ReadOnly Property HasFeatures As Boolean
     Function GetOtherCharacters(character As ICharacter) As IEnumerable(Of ICharacter)
+    Function HasOtherCharacters(character As ICharacter) As Boolean
 End Interface

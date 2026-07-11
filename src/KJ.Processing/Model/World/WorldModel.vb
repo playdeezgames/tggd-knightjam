@@ -43,6 +43,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property Characters As ICharactersModel Implements IWorldModel.Characters
+        Get
+            Return CharactersModel.Create(Entity)
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))

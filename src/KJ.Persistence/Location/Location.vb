@@ -86,4 +86,8 @@ Friend Class Location
             Where(Function(id) id <> character.CharacterId).
             Select(Function(x) Persistence.Character.Create(World, _data, x))
     End Function
+
+    Public Function HasOtherCharacters(character As ICharacter) As Boolean Implements ILocation.HasOtherCharacters
+        Return Data.CharacterIds.Any(Function(x) x <> character.CharacterId)
+    End Function
 End Class
