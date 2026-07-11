@@ -27,6 +27,12 @@ Friend Module AbandonedHouseInitializer
     Private Sub InitializeKlonkkuCorpse(feature As IFeature)
         feature.SetName("klonkku corpse")
         feature.SetFlavor("You behold a very dead klonkku. It smells like you'd expect. For some reason, its left index finger is brown, and yer pretty sure that's not chocolate.")
+        feature.CreateVerb(VerbTypes.CHECK_BUTTHOLE, AddressOf InitializeCheckKlonkkuButthole)
+    End Sub
+
+    Private Sub InitializeCheckKlonkkuButthole(verb As IVerb)
+        verb.SetName("Check Butthole")
+        verb.SetFlavor("Well, yer sure a curious fella, aintcha?")
     End Sub
 
     Private Sub InitializeStairs(route As IRoute)

@@ -22,6 +22,7 @@ Public Class World
         Data.Inventories.Clear()
         Data.Items.Clear()
         Data.Features.Clear()
+        Data.Verbs.Clear()
     End Sub
 
     Protected Overrides ReadOnly Property Data As WorldData

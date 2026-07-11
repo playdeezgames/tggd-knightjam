@@ -26,4 +26,16 @@ Friend Class Feature
     Friend Shared Function Create(world As IWorld, data As WorldData, featureId As Guid) As IFeature
         Return New Feature(world, data, featureId)
     End Function
+
+    Public Function CreateVerb(verbType As String, Optional initializer As VerbInitializer = Nothing) As IVerb Implements IFeature.CreateVerb
+        Dim verbId = Guid.NewGuid
+        _data.Verbs(verbId) = New VerbData With
+            {
+                .verbType = verbType
+            }
+        Data.VerbIds.Add(verbId)
+        Dim result As IVerb = Verb.Create(World, _data, verbId)
+        initializer?.Invoke(result)
+        Return result
+    End Function
 End Class
