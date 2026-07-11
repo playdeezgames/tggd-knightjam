@@ -11,4 +11,5 @@ Public Interface IWorldModel
     ReadOnly Property Exits As IExitsModel
     ReadOnly Property Ground As IGroundModel
     ReadOnly Property Inventory As IInventoryModel
+    ReadOnly Property Features As IFeaturesModel
 End Interface

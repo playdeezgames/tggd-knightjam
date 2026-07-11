@@ -20,15 +20,16 @@ Friend Module CharacterExtensions
         Dim location = character.Location
         character.AddMessage($"{character.GetName()} is in {location.GetName()}!")
         character.AddMessage(location.GetFlavor())
-        ShowExits(character, location)
-        ShowFeatures(character, location)
+        ShowExits(character)
+        ShowFeatures(character)
         If location.Inventory.HasItems Then
             character.AddMessage("There are items on the ground.")
         End If
     End Sub
 
-    Private Sub ShowFeatures(character As ICharacter, location As ILocation)
-        Dim features = location.Features
+    <Extension>
+    Friend Sub ShowFeatures(character As ICharacter)
+        Dim features = character.Location.Features
         If features.Any Then
             character.AddMessage($"Features:")
             For Each feature In features
@@ -37,8 +38,9 @@ Friend Module CharacterExtensions
         End If
     End Sub
 
-    Private Sub ShowExits(character As ICharacter, location As ILocation)
-        Dim routes = location.Routes
+    <Extension>
+    Friend Sub ShowExits(character As ICharacter)
+        Dim routes = character.Location.Routes
         If routes.Any() Then
             character.AddMessage($"Exits:")
             For Each route In routes

@@ -37,6 +37,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property Features As IFeaturesModel Implements IWorldModel.Features
+        Get
+            Return FeaturesModel.Create(Entity)
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))

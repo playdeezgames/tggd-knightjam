@@ -20,10 +20,15 @@ Friend Class NavigationMenu
                 Append(AddressOf ChooseMove).
                 Append(AddressOf ChooseGround).
                 Append(AddressOf ChooseInventory).
+                Append(AddressOf ChooseFeatures).
                 Append(AddressOf ChooseLook).
                 Append(AddressOf ChooseGameMenu)
         End Get
     End Property
+
+    Private Function ChooseFeatures(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.Create(model.Features.HasAny, "Features...", FeaturesMenu.Launch(context, model, previous))
+    End Function
 
     Private Function ChooseInventory(
                                     context As IDisplayContext,
