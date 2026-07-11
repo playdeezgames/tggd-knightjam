@@ -21,9 +21,16 @@ Friend Class CharacterMenu
     Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
-                Append(AddressOf ChooseNeverMind)
+                Append(AddressOf ChooseNeverMind).
+                Concat(characterModel.Verbs.Select(AddressOf ChooseCharacterVerb))
         End Get
     End Property
+
+    Private Function ChooseCharacterVerb(verbModel As IVerbModel) As LaunchDelegate
+        Return Function(c, m, p)
+                   Return DialogChoice.Create(verbModel.IsEnabled, verbModel.Name, CharacterVerbActivity.Launch(c, m, p, characterModel, verbModel))
+               End Function
+    End Function
 
     Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, p As DialogSource, characterModel As ICharacterModel) As DialogSource
         Return Function()

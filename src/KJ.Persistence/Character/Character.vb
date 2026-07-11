@@ -24,6 +24,11 @@ Friend Class Character
         End Set
     End Property
 
+    Public ReadOnly Property Verbs As IEnumerable(Of IVerb) Implements ICharacter.Verbs
+        Get
+            Return Data.VerbIds.Select(Function(x) Verb.Create(World, _data, x))
+        End Get
+    End Property
 
     Protected Overrides ReadOnly Property Data As CharacterData
         Get
@@ -33,5 +38,17 @@ Friend Class Character
 
     Friend Shared Function Create(world As IWorld, data As WorldData, characterId As Guid?) As ICharacter
         Return If(characterId.HasValue, New Character(world, data, characterId.Value), Nothing)
+    End Function
+
+    Public Function CreateVerb(verbType As String, Optional initializer As VerbInitializer = Nothing) As IVerb Implements ICharacter.CreateVerb
+        Dim verbId = Guid.NewGuid
+        _data.Verbs(verbId) = New VerbData With
+            {
+                .VerbType = verbType
+            }
+        Data.VerbIds.Add(verbId)
+        Dim result As IVerb = Verb.Create(World, _data, verbId)
+        initializer?.Invoke(result)
+        Return result
     End Function
 End Class

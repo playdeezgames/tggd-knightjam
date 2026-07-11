@@ -15,6 +15,12 @@ Friend Class CharacterModel
         End Get
     End Property
 
+    Public ReadOnly Property Verbs As IEnumerable(Of IVerbModel) Implements ICharacterModel.Verbs
+        Get
+            Return character.Verbs.Select(Function(x) CharacterVerbModel.Create(character, x))
+        End Get
+    End Property
+
     Public Sub Examine() Implements ICharacterModel.Examine
         Dim world = character.World
         world.ClearMessages()
