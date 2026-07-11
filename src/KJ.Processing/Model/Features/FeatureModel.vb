@@ -15,6 +15,12 @@ Friend Class FeatureModel
         End Get
     End Property
 
+    Public ReadOnly Property Verbs As IEnumerable(Of IVerbModel) Implements IFeatureModel.Verbs
+        Get
+            Return feature.Verbs.Select(Function(x) FeatureVerbModel.Create(feature, x))
+        End Get
+    End Property
+
     Public Sub Examine() Implements IFeatureModel.Examine
         Dim world = feature.World
         world.ClearMessages()
