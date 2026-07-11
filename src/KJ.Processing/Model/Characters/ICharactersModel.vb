@@ -1,4 +1,5 @@
 ﻿Public Interface ICharactersModel
     ReadOnly Property HasAny As Boolean
-    ReadOnly Property Characters As IEnumerable(Of ICharacterModel)
+    ReadOnly Property All As IEnumerable(Of ICharacterModel)
+    Sub ShowList()
 End Interface

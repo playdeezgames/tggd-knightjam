@@ -18,12 +18,20 @@ Friend Class CharactersMenu
     Protected Overrides ReadOnly Property Launchers As IEnumerable(Of LaunchDelegate)
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
-                Append(AddressOf ChooseNeverMind)
+                Append(AddressOf ChooseNeverMind).
+                Concat(Model.Characters.All.Select(AddressOf ChooseCharacter))
         End Get
     End Property
 
+    Private Function ChooseCharacter(characterModel As ICharacterModel) As LaunchDelegate
+        Return Function(c, m, p) DialogChoice.CreateEnabled(characterModel.Name, CharacterMenu.Launch(c, m, p, characterModel))
+    End Function
+
     Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource
-        Return Function() New CharactersMenu(context, model, previous)
+        Return Function()
+                   model.Characters.ShowList()
+                   Return New CharactersMenu(context, model, previous)
+               End Function
     End Function
 
     Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice

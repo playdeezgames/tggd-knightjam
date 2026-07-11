@@ -15,6 +15,12 @@ Friend Class CharacterModel
         End Get
     End Property
 
+    Public Sub Examine() Implements ICharacterModel.Examine
+        Dim world = character.World
+        world.ClearMessages()
+        world.Avatar.AddMessage(character.GetFlavor())
+    End Sub
+
     Friend Shared Function Create(character As ICharacter) As ICharacterModel
         Return New CharacterModel(character)
     End Function

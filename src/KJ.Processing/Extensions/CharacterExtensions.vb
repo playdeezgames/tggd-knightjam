@@ -28,7 +28,8 @@ Friend Module CharacterExtensions
         End If
     End Sub
 
-    Private Sub ShowOtherCharacters(character As ICharacter)
+    <Extension>
+    Friend Sub ShowOtherCharacters(character As ICharacter)
         Dim others = character.Location.GetOtherCharacters(character)
         If others.Any Then
             character.AddMessage("Characters:")
