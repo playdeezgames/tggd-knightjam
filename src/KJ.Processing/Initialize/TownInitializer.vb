@@ -6,7 +6,7 @@ Friend Module TownInitializer
         world.CreateLocation(InitializeNorthTown(context))
         world.CreateLocation(InitializeNorthEastTown(context))
         world.CreateLocation(InitializeWestTown(context))
-        world.CreateLocation(InitializeCenterTown(context))
+        world.CreateLocation(TownCenterInitializer.Initialize(context))
         world.CreateLocation(InitializeEastTown(context))
         world.CreateLocation(InitializeSouthWestTown(context))
         world.CreateLocation(InitializeSouthTown(context))
@@ -63,14 +63,6 @@ Friend Module TownInitializer
                    location.SetName("east side of town")
                    location.SetFlavor("You find yerself in the east side of town.")
                    context.EastTown = location
-               End Sub
-    End Function
-
-    Private Function InitializeCenterTown(context As IInitializationContext) As LocationInitializer
-        Return Sub(location)
-                   location.SetName("town center")
-                   location.SetFlavor("You find yerself in the town center.")
-                   context.CenterTown = location
                End Sub
     End Function
 

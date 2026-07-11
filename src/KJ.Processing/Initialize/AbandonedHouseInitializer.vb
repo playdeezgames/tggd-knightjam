@@ -9,7 +9,6 @@ Friend Module AbandonedHouseInitializer
                    context.SouthTown.CreateRoute(Directions.IN, location, AddressOf InitializeOpenDoorway)
                    location.Inventory.CreateItem(AddressOf InitializeDestroyedPrinter)
                    location.Inventory.CreateItem(AddressOf InitializePkasticBag)
-                   context.AbandonedHouse = location
                    Dim basement = location.World.CreateLocation(InitializeBasement(location))
                End Sub
     End Function

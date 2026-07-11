@@ -10,7 +10,7 @@ Friend Module BlueRoomInitializer
                    location.CreateRoute(Directions.OUT, context.SouthWestTown, AddressOf InitializeBlueRoomDoor)
                    context.SouthWestTown.CreateRoute(Directions.[IN], location, AddressOf InitializeBlueRoomDoor)
 #If DEBUG Then
-                   location.CreateRoute(Directions.SIDEWAYS, context.AbandonedHouse, AddressOf InitializePortal)
+                   location.CreateRoute(Directions.SIDEWAYS, context.PortalDestination, AddressOf InitializePortal)
 #End If
                End Sub
     End Function
