@@ -20,10 +20,21 @@ Friend Module CharacterExtensions
         Dim location = character.Location
         character.AddMessage($"{character.GetName()} is in {location.GetName()}!")
         character.AddMessage(location.GetFlavor())
+        ShowOtherCharacters(character)
         ShowExits(character)
         ShowFeatures(character)
         If location.Inventory.HasItems Then
             character.AddMessage("There are items on the ground.")
+        End If
+    End Sub
+
+    Private Sub ShowOtherCharacters(character As ICharacter)
+        Dim others = character.Location.GetOtherCharacters(character)
+        If others.Any Then
+            character.AddMessage("Characters:")
+            For Each other In others
+                character.AddMessage($"- {other.GetName}")
+            Next
         End If
     End Sub
 

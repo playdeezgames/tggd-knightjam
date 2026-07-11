@@ -80,4 +80,10 @@ Friend Class Location
         initializer?.Invoke(result)
         Return result
     End Function
+
+    Public Function GetOtherCharacters(character As ICharacter) As IEnumerable(Of ICharacter) Implements ILocation.GetOtherCharacters
+        Return Data.CharacterIds.
+            Where(Function(id) id <> character.CharacterId).
+            Select(Function(x) Persistence.Character.Create(World, _data, x))
+    End Function
 End Class
