@@ -1,7 +1,7 @@
 ﻿Imports KJ.Provision
 
 Friend Class Feature
-    Inherits InventoriedEntity(Of FeatureData)
+    Inherits VerbableEntity(Of FeatureData)
     Implements IFeature
 
     Private Sub New(world As IWorld, data As WorldData, featureId As Guid)
@@ -17,11 +17,6 @@ Friend Class Feature
         End Get
     End Property
 
-    Public ReadOnly Property Verbs As IEnumerable(Of IVerb) Implements IFeature.Verbs
-        Get
-            Return Data.VerbIds.Select(Function(x) Verb.Create(World, _data, x))
-        End Get
-    End Property
 
     Protected Overrides ReadOnly Property Data As FeatureData
         Get
@@ -31,17 +26,5 @@ Friend Class Feature
 
     Friend Shared Function Create(world As IWorld, data As WorldData, featureId As Guid) As IFeature
         Return New Feature(world, data, featureId)
-    End Function
-
-    Public Function CreateVerb(verbType As String, Optional initializer As VerbInitializer = Nothing) As IVerb Implements IFeature.CreateVerb
-        Dim verbId = Guid.NewGuid
-        _data.Verbs(verbId) = New VerbData With
-            {
-                .verbType = verbType
-            }
-        Data.VerbIds.Add(verbId)
-        Dim result As IVerb = Verb.Create(World, _data, verbId)
-        initializer?.Invoke(result)
-        Return result
     End Function
 End Class

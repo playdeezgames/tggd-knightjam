@@ -1,8 +1,6 @@
 ﻿Public Delegate Sub FeatureInitializer(feature As IFeature)
 Public Interface IFeature
-    Inherits IInventoriedEntity
+    Inherits IVerbableEntity
     ReadOnly Property FeatureId As Guid
     ReadOnly Property Location As ILocation
-    Function CreateVerb(verbType As String, Optional initializer As VerbInitializer = Nothing) As IVerb
-    ReadOnly Property Verbs As IEnumerable(Of IVerb)
 End Interface

@@ -1,7 +1,7 @@
 ﻿Imports KJ.Provision
 
 Friend Class Location
-    Inherits InventoriedEntity(Of LocationData)
+    Inherits VerbableEntity(Of LocationData)
     Implements ILocation
 
     Private Sub New(world As IWorld, data As WorldData, locationId As Guid)

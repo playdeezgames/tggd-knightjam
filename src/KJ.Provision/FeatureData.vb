@@ -1,5 +1,4 @@
 ﻿Public Class FeatureData
-    Inherits InventoriedEntityData
+    Inherits VerbableEntityData
     Public Property LocationId As Guid
-    Public Property VerbIds As New HashSet(Of Guid)
 End Class
