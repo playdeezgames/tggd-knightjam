@@ -28,6 +28,24 @@ Friend Module EastSideInitializer
                    context.PortalDestination = location
 #End If
                    location.CreateCharacter(AddressOf InitializeGorachan)
+                   location.World.CreateLocation(location.InitializeCellar())
+               End Sub
+    End Function
+
+    <Extension>
+    Private Function InitializeCellar(inn As ILocation) As LocationInitializer
+        Return Sub(location)
+                   location.SetName("Inn Cellar")
+                   location.SetFlavor("Yer in the cellar of the inn. It smells of rat turd, and sounds like an early 80s hair band.")
+                   location.CreateRoute(Directions.UP, inn, InitializeStairs("up"))
+                   inn.CreateRoute(Directions.DOWN, location, InitializeStairs("down"))
+               End Sub
+    End Function
+
+    Private Function InitializeStairs(directionName As String) As RouteInitializer
+        Return Sub(route)
+                   route.SetName("Stairs")
+                   route.SetFlavor($"You go {directionName} the rickety-ass, poorly maintained, mysteriously sticky stairs.")
                End Sub
     End Function
 
