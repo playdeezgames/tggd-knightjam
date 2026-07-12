@@ -1,6 +1,6 @@
 ﻿Public Delegate Sub LocationInitializer(location As ILocation)
 Public Interface ILocation
-    Inherits IVerbableEntity
+    Inherits IInventoriedEntity
     ReadOnly Property LocationId As Guid
     ReadOnly Property HasRoutes As Boolean
     Function CreateCharacter(Optional initialize As CharacterInitializer = Nothing) As ICharacter

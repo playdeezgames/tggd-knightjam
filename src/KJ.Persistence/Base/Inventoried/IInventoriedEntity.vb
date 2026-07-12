@@ -1,4 +1,4 @@
 ﻿Public Interface IInventoriedEntity
-    Inherits IKJEntity
+    Inherits IVerbableEntity
     ReadOnly Property Inventory As IInventory
 End Interface

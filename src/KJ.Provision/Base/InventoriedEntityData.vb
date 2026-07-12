@@ -1,4 +1,4 @@
 ﻿Public MustInherit Class InventoriedEntityData
-    Inherits KJEntityData
+    Inherits VerbableEntityData
     Public Property InventoryId As Guid?
 End Class

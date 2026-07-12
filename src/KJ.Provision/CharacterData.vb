@@ -1,4 +1,4 @@
 ﻿Public Class CharacterData
-    Inherits VerbableEntityData
+    Inherits InventoriedEntityData
     Public Property LocationId As Guid
 End Class

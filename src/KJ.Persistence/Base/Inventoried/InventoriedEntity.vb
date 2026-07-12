@@ -1,7 +1,7 @@
 ﻿Imports KJ.Provision
 
 Friend MustInherit Class InventoriedEntity(Of TData As InventoriedEntityData)
-    Inherits KJEntity(Of TData)
+    Inherits VerbableEntity(Of TData)
     Implements IInventoriedEntity
 
     Protected Sub New(world As IWorld, data As WorldData)

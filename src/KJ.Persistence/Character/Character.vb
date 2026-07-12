@@ -1,7 +1,7 @@
 ﻿Imports KJ.Provision
 
 Friend Class Character
-    Inherits VerbableEntity(Of CharacterData)
+    Inherits InventoriedEntity(Of CharacterData)
     Implements ICharacter
 
     Private Sub New(world As IWorld, data As WorldData, characterId As Guid)

@@ -1,4 +1,4 @@
 ﻿Public Class FeatureData
-    Inherits VerbableEntityData
+    Inherits InventoriedEntityData
     Public Property LocationId As Guid
 End Class

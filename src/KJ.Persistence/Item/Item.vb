@@ -1,7 +1,7 @@
 ﻿Imports KJ.Provision
 
 Friend Class Item
-    Inherits KJEntity(Of ItemData)
+    Inherits VerbableEntity(Of ItemData)
     Implements IItem
 
     Private Sub New(world As IWorld, data As WorldData, itemId As Guid)

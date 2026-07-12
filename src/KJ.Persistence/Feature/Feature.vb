@@ -1,7 +1,7 @@
 ﻿Imports KJ.Provision
 
 Friend Class Feature
-    Inherits VerbableEntity(Of FeatureData)
+    Inherits InventoriedEntity(Of FeatureData)
     Implements IFeature
 
     Private Sub New(world As IWorld, data As WorldData, featureId As Guid)

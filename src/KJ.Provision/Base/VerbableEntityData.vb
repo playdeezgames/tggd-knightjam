@@ -1,4 +1,4 @@
 ﻿Public MustInherit Class VerbableEntityData
-    Inherits InventoriedEntityData
+    Inherits KJEntityData
     Public Property VerbIds As New HashSet(Of Guid)
 End Class
