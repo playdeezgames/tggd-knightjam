@@ -7,7 +7,12 @@ Friend Module LocationVerbExtensions
 
     Private ReadOnly canPerformTable As New Dictionary(Of String, CanPerformHandler) From
         {
+            {VerbTypes.SEARCH, AddressOf CanSearch}
         }
+
+    Private Function CanSearch(verb As IVerb, location As ILocation) As Boolean
+        Return Not location.Characters.Any(Function(x) x.IsRat())
+    End Function
 
     <Extension>
     Friend Function CanPerform(verb As IVerb, location As ILocation) As Boolean
@@ -20,7 +25,20 @@ Friend Module LocationVerbExtensions
 
     Private ReadOnly performTable As New Dictionary(Of String, PerformHandler) From
         {
+            {VerbTypes.SEARCH, AddressOf PerformSearch}
         }
+
+    Private Sub PerformSearch(verb As IVerb, location As ILocation)
+        Dim character = location.World.Avatar
+        Dim rat = location.CreateCharacter(AddressOf InitializeRat)
+        character.AddMessage($"{character.GetName()} finds {rat.GetName()}!")
+    End Sub
+
+    Private Sub InitializeRat(character As ICharacter)
+        character.SetName("Rat")
+        character.SetFlavor("This is a rat. It has big hair and likes heavy metal.")
+        character.SetRat()
+    End Sub
 
     <Extension>
     Sub Perform(verb As IVerb, location As ILocation)

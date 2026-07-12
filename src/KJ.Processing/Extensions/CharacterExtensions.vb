@@ -7,6 +7,14 @@ Friend Module CharacterExtensions
         Return If(character.World.Avatar?.CharacterId = character.CharacterId, False)
     End Function
     <Extension>
+    Friend Function IsRat(character As ICharacter) As Boolean
+        Return character.HasTag(Tags.RAT)
+    End Function
+    <Extension>
+    Friend Sub SetRat(character As ICharacter)
+        character.SetTag(Tags.RAT)
+    End Sub
+    <Extension>
     Friend Sub AddMessage(
                           character As ICharacter,
                           text As String,
