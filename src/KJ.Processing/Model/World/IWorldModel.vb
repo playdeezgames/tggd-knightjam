@@ -6,11 +6,12 @@ Public Interface IWorldModel
     ReadOnly Property IsQuittable As Boolean
     Sub Embark(chosenName As String)
     Sub Abandon()
-    Sub Look()
+    Sub Look() 'TODO: goes into location model
+    ReadOnly Property Location As ILocationModel
     ReadOnly Property Messages As IEnumerable(Of IMessage)
-    ReadOnly Property Exits As IExitsModel
-    ReadOnly Property Ground As IGroundModel
+    ReadOnly Property Exits As IExitsModel ' TODO: goes into location model
+    ReadOnly Property Ground As IGroundModel ' TODO: goes into location model
     ReadOnly Property Inventory As IInventoryModel
-    ReadOnly Property Features As IFeaturesModel
-    ReadOnly Property Characters As ICharactersModel
+    ReadOnly Property Features As IFeaturesModel 'TODO: goes into location model
+    ReadOnly Property Characters As ICharactersModel 'TODO: goes into location model
 End Interface

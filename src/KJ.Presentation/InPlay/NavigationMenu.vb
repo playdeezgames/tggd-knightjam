@@ -23,9 +23,14 @@ Friend Class NavigationMenu
                 Append(AddressOf ChooseCharacters).
                 Append(AddressOf ChooseFeatures).
                 Append(AddressOf ChooseLook).
+                Concat(Model.Location.Verbs.Select(AddressOf ChooseVerb)).
                 Append(AddressOf ChooseGameMenu)
         End Get
     End Property
+
+    Private Function ChooseVerb(verbModel As IVerbModel) As LaunchDelegate
+        Return Function(c, m, p) DialogChoice.Create(verbModel.IsEnabled, verbModel.Name, LocationVerbActivity.Launch(c, m, p, verbModel))
+    End Function
 
     Private Function ChooseCharacters(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
         Return DialogChoice.Create(model.Characters.HasAny, "Characters...", CharactersMenu.Launch(context, model, previous))

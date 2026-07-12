@@ -49,6 +49,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property Location As ILocationModel Implements IWorldModel.Location
+        Get
+            Return LocationModel.Create(Entity.Avatar.Location)
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))

@@ -39,8 +39,14 @@ Friend Module EastSideInitializer
                    location.SetFlavor("Yer in the cellar of the inn. It smells of rat turd, and sounds like an early 80s hair band.")
                    location.CreateRoute(Directions.UP, inn, InitializeStairs("up"))
                    inn.CreateRoute(Directions.DOWN, location, InitializeStairs("down"))
+                   location.CreateVerb(VerbTypes.SEARCH, AddressOf InitializeSearch)
                End Sub
     End Function
+
+    Private Sub InitializeSearch(verb As IVerb)
+        verb.SetName("Search...")
+        verb.SetFlavor("You look around the cellar for rats.")
+    End Sub
 
     Private Function InitializeStairs(directionName As String) As RouteInitializer
         Return Sub(route)
