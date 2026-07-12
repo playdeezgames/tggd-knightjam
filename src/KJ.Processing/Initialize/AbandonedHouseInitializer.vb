@@ -15,7 +15,7 @@ Friend Module AbandonedHouseInitializer
 
     Private Function InitializeBasement(house As ILocation) As LocationInitializer
         Return Sub(location)
-                   location.SetName("basement")
+                   location.SetName("Basement")
                    location.SetFlavor("This is the basement of the abandoned house. The stench of klonkku is overpowering.")
                    location.CreateRoute(Directions.UP, house, AddressOf InitializeStairs)
                    house.CreateRoute(Directions.DOWN, location, AddressOf InitializeStairs)
@@ -24,7 +24,7 @@ Friend Module AbandonedHouseInitializer
     End Function
 
     Private Sub InitializeKlonkkuCorpse(feature As IFeature)
-        feature.SetName("klonkku corpse")
+        feature.SetName("Klonkku Corpse")
         feature.SetFlavor("You behold a very dead klonkku. It smells like you'd expect. For some reason, its left index finger is brown, and yer pretty sure that's not chocolate.")
         feature.CreateVerb(VerbTypes.CHECK_BUTTHOLE, AddressOf InitializeCheckKlonkkuButthole)
     End Sub
@@ -35,22 +35,22 @@ Friend Module AbandonedHouseInitializer
     End Sub
 
     Private Sub InitializeStairs(route As IRoute)
-        route.SetName("stairs")
+        route.SetName("Stairs")
         route.SetFlavor("You go up(or down) the stairs. The dev couldn't be bothered to make two different flavor texts.")
     End Sub
 
     Private Sub InitializePkasticBag(item As IItem)
-        item.SetName("pkastic bag")
+        item.SetName("Pkastic Bag")
         item.SetFlavor("No, that is not a misspelling. This item is made from pkastic. You have mixed feelings about reaching inside.")
     End Sub
 
     Private Sub InitializeDestroyedPrinter(item As IItem)
-        item.SetName("destroyed printer")
+        item.SetName("Destroyed Printer")
         item.SetFlavor("This printer looks like it has been thoroughly bashed to smithereens with a cricket bat.")
     End Sub
 
     Private Sub InitializeOpenDoorway(route As IRoute)
-        route.SetName("open doorway")
+        route.SetName("Open Doorway")
         route.SetFlavor("You walk through a completely open doorway. The doors that previously hung here are gone.")
     End Sub
 End Module

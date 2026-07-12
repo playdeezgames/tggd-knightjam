@@ -12,5 +12,7 @@ Friend Interface IInitializationContext
     Property NorthEastTown As ILocation
     Property NorthTown As ILocation
     Property NorthWestTown As ILocation
+#If DEBUG Then
     Property PortalDestination As ILocation
+#End If
 End Interface

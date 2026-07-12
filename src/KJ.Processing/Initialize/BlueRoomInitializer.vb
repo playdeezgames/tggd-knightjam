@@ -17,13 +17,13 @@ Friend Module BlueRoomInitializer
 
 #If DEBUG Then
     Private Sub InitializePortal(route As IRoute)
-        route.SetName("portal")
+        route.SetName("Debug Portal")
         route.SetFlavor("You use the magical debug portal to go to the place that yer actively testing.")
     End Sub
 #End If
 
     Private Sub InitializeBlueRoomDoor(route As IRoute)
-        route.SetName("blue door")
+        route.SetName("Blue Door")
         route.SetFlavor("You open the blue door, go through it, and gently close it behind you.")
     End Sub
 
