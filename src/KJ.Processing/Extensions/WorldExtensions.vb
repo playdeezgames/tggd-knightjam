@@ -13,8 +13,10 @@ Friend Module WorldExtensions
         Return world.HasTag(Tags.IN_COMBAT)
     End Function
     <Extension>
-    Friend Function CheckCombatFinished(world As IWorld) As Boolean
+    Friend Sub CheckCombatFinished(world As IWorld)
         Dim character = world.Avatar
-        Return character.IsDead() OrElse character.Location.GetOtherCharacters(character).All(Function(x) x.IsDead)
-    End Function
+        If character.IsDead() OrElse character.Location.GetOtherCharacters(character).All(Function(x) x.IsDead) Then
+            world.ClearTag(Tags.IN_COMBAT)
+        End If
+    End Sub
 End Module
