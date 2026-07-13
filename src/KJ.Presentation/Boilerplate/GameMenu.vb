@@ -31,8 +31,8 @@ Friend Class GameMenu
             Launch(
                 Context,
                 "Are you sure you want to abandon?",
-                AbandonActivity.Launch(Context, Model, PreviousDialog),
-                InPlay.Launch(Context, Model, PreviousDialog)).Invoke()
+                AbandonActivity.Launch(Context, Model, Previous),
+                InPlay.Launch(Context, Model, Previous)).Invoke()
     End Function
 
     Private Function ChooseContinue(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice

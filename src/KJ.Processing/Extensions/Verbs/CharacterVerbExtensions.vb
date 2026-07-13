@@ -25,8 +25,13 @@ Friend Module CharacterVerbExtensions
 
     Private ReadOnly performTable As New Dictionary(Of String, PerformHandler) From
         {
-            {VerbTypes.CELLAR_QUEST, AddressOf AcceptCellarQuest}
+            {VerbTypes.CELLAR_QUEST, AddressOf AcceptCellarQuest},
+            {VerbTypes.FIGHT, AddressOf HandleFight}
         }
+
+    Private Sub HandleFight(verb As IVerb, character As ICharacter)
+        verb.World.EnterCombat()
+    End Sub
 
     Private Sub AcceptCellarQuest(verb As IVerb, character As ICharacter)
         Dim avatar = verb.World.Avatar

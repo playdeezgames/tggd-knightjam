@@ -17,6 +17,6 @@ Friend Class DropActivity
 
     Public Overrides Function Run() As IDialogPrompt
         itemModel.Drop()
-        Return InventoryMenu.Launch(Context, Model, PreviousDialog).Invoke().Run()
+        Return InventoryMenu.Launch(Context, Model, Previous).Invoke().Run()
     End Function
 End Class

@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports KJ.Persistence
+Imports TGGD.Processing
 
 Friend Module CharacterExtensions
     <Extension>
@@ -68,4 +69,50 @@ Friend Module CharacterExtensions
             Next
         End If
     End Sub
+    <Extension>
+    Friend Sub Attack(attacker As ICharacter, defender As ICharacter)
+        Dim world = attacker.World
+        world.AddMessage($"{attacker.GetName} attacks {defender.GetName}!")
+        Dim attackRoll = attacker.RollAttack()
+        world.AddMessage($"{attacker.GetName} rolls an attack of {attackRoll}!")
+        Dim defendRoll = defender.RollDefend()
+        world.AddMessage($"{defender.GetName} rolls a defend of {defendRoll}!")
+        Dim damage = Math.Max(0, attackRoll - defendRoll)
+        If damage > 0 Then
+            world.AddMessage($"{defender.GetName} takes {damage} damage!")
+            defender.TakeDamage(damage)
+            If defender.IsDead Then
+                world.AddMessage($"{attacker.GetName} kills {defender.GetName}!")
+                world.CheckCombatFinished()
+            Else
+                world.AddMessage($"{defender.GetName} has {defender.GetHealth()}/{defender.GetMaximumHealth()} health left.")
+            End If
+        Else
+            world.AddMessage($"{attacker.GetName} misses!")
+        End If
+    End Sub
+    <Extension>
+    Friend Function IsDead(character As ICharacter) As Boolean
+        Return character.IsCounterMinimum(Counters.HEALTH)
+    End Function
+    <Extension>
+    Friend Function RollAttack(character As ICharacter) As Integer
+        Return RNG.RollDice(character.GetMetadata(Metadatas.ATTACK_ROLL))
+    End Function
+    <Extension>
+    Friend Function RollDefend(character As ICharacter) As Integer
+        Return RNG.RollDice(character.GetMetadata(Metadatas.DEFEND_ROLL))
+    End Function
+    <Extension>
+    Friend Sub TakeDamage(character As ICharacter, damage As Integer)
+        character.ChangeCounter(Counters.HEALTH, -damage)
+    End Sub
+    <Extension>
+    Friend Function GetHealth(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.HEALTH)
+    End Function
+    <Extension>
+    Friend Function GetMaximumHealth(character As ICharacter) As Integer
+        Return character.GetCounterMaximum(Counters.HEALTH)
+    End Function
 End Module

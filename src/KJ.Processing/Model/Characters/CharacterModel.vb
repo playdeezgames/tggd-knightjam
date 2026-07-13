@@ -27,6 +27,16 @@ Friend Class CharacterModel
         world.Avatar.AddMessage(character.GetFlavor())
     End Sub
 
+    Public Sub Attack() Implements ICharacterModel.Attack
+        Dim world = character.World
+        world.ClearMessages()
+        Dim avatar = world.Avatar
+        avatar.Attack(character)
+        If Not character.IsDead() Then
+            character.Attack(avatar)
+        End If
+    End Sub
+
     Friend Shared Function Create(character As ICharacter) As ICharacterModel
         Return New CharacterModel(character)
     End Function

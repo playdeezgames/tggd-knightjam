@@ -27,7 +27,7 @@ Friend Class FeatureVerbActivity
     End Property
 
     Private Function ChooseOk(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("OK", FeatureMenu.Launch(context, model, PreviousDialog, featureModel))
+        Return DialogChoice.CreateEnabled("OK", FeatureMenu.Launch(context, model, Previous, featureModel))
     End Function
 
     Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, p As DialogSource, featureModel As IFeatureModel, verbModel As IVerbModel) As DialogSource

@@ -17,6 +17,6 @@ Friend Class ChooseNamePrompt
     End Function
 
     Private Function ChooseName(value As String) As IDialog
-        Return ValidateChosenName.Launch(Context, Model, PreviousDialog, value).Invoke()
+        Return ValidateChosenName.Launch(Context, Model, Previous, value).Invoke()
     End Function
 End Class

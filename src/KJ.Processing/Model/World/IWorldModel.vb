@@ -14,4 +14,5 @@ Public Interface IWorldModel
     ReadOnly Property Inventory As IInventoryModel
     ReadOnly Property Features As IFeaturesModel 'TODO: goes into location model
     ReadOnly Property Characters As ICharactersModel 'TODO: goes into location model
+    ReadOnly Property IsInCombat As Boolean
 End Interface

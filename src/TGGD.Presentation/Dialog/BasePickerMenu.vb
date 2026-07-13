@@ -19,7 +19,7 @@ Public MustInherit Class BasePickerMenu(Of TContext As IDisplayContext, TModel A
         Render()
         Return DialogPrompt.CreateChoicePrompt(
             PromptText,
-            Launchers.Select(Function(x) x(Context, Model, PreviousDialog)).ToArray)
+            Launchers.Select(Function(x) x(Context, Model, Previous)).ToArray)
     End Function
 
     Protected MustOverride Sub Render()

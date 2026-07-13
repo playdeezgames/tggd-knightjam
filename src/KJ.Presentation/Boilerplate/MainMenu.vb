@@ -31,12 +31,12 @@ Friend Class MainMenu
             Launch(
                 Context,
                 "Are you sure you want to quit?",
-                PreviousDialog,
-                Launch(Context, Model, PreviousDialog)).Invoke()
+                Previous,
+                Launch(Context, Model, Previous)).Invoke()
     End Function
 
     Private Function ChooseEmbark(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
-        Return DialogChoice.CreateEnabled("Embark!", ChooseNamePrompt.Launch(context, model, PreviousDialog))
+        Return DialogChoice.CreateEnabled("Embark!", ChooseNamePrompt.Launch(context, model, Previous))
     End Function
 
     Protected Overrides Sub Render()

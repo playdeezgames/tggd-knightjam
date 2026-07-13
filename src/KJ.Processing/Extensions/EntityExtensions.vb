@@ -18,4 +18,10 @@ Friend Module EntityExtensions
     Friend Function GetFlavor(entity As IKJEntity) As String
         Return entity.GetMetadata(Metadatas.FLAVOR)
     End Function
+    <Extension>
+    Friend Sub InitializeCounter(entity As IKJEntity, counterId As String, value As Integer, minimum As Integer, maximum As Integer)
+        entity.SetCounterMinimum(counterId, minimum)
+        entity.SetCounterMaximum(counterId, maximum)
+        entity.SetCounter(counterId, value)
+    End Sub
 End Module

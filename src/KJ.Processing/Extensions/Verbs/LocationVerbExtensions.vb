@@ -37,6 +37,9 @@ Friend Module LocationVerbExtensions
     Private Sub InitializeRat(character As ICharacter)
         character.SetName("Rat")
         character.SetFlavor("This is a rat. It has big hair and likes heavy metal.")
+        character.InitializeCounter(Counters.HEALTH, 20, 0, 20)
+        character.SetMetadata(Metadatas.DEFEND_ROLL, "2d6")
+        character.SetMetadata(Metadatas.ATTACK_ROLL, "2d6")
         character.SetRat()
         character.CreateVerb(VerbTypes.FIGHT, InitializeFight(character))
     End Sub
@@ -44,7 +47,7 @@ Friend Module LocationVerbExtensions
     Private Function InitializeFight(character As ICharacter) As VerbInitializer
         Return Sub(verb)
                    verb.SetName("Fight!")
-                   verb.SetFlavor($"You attack {character.GetName()}!")
+                   verb.SetFlavor($"You start a fight with {character.GetName()}!")
                End Sub
     End Function
 

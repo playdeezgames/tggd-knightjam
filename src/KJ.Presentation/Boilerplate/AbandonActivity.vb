@@ -14,6 +14,6 @@ Friend Class AbandonActivity
 
     Public Overrides Function Run() As IDialogPrompt
         Model.Abandon()
-        Return MainMenu.Launch(Context, Model, PreviousDialog).Invoke().Run()
+        Return MainMenu.Launch(Context, Model, Previous).Invoke().Run()
     End Function
 End Class

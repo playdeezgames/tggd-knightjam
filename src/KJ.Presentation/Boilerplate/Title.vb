@@ -16,7 +16,7 @@ Public Class Title
         Context.Render("Sponsored by: UMLAUT.FYI!", New Dictionary(Of String, String) From {{HintNames.ELEMENT_TYPE, ElementTypes.LINK}, {HintNames.URL, "https://umlaut.fyi/"}})
         Return DialogPrompt.CreateChoicePrompt(
             "",
-            DialogChoice.Create(True, "OK", MainMenu.Launch(Context, Model, PreviousDialog)))
+            DialogChoice.Create(True, "OK", MainMenu.Launch(Context, Model, Previous)))
     End Function
 
     Public Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource

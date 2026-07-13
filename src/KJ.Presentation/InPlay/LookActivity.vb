@@ -14,6 +14,6 @@ Friend Class LookActivity
 
     Public Overrides Function Run() As IDialogPrompt
         Model.Look()
-        Return InPlay.Launch(Context, Model, PreviousDialog).Invoke().Run()
+        Return InPlay.Launch(Context, Model, Previous).Invoke().Run()
     End Function
 End Class

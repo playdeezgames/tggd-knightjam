@@ -55,6 +55,12 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public ReadOnly Property IsInCombat As Boolean Implements IWorldModel.IsInCombat
+        Get
+            Return Entity.IsInCombat()
+        End Get
+    End Property
+
     Public Sub Embark(chosenName As String) Implements IWorldModel.Embark
         Abandon()
         Entity.Initialize(InitializationContext.Create(chosenName))

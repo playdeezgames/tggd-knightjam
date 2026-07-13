@@ -17,7 +17,7 @@ Friend Class TakeItemActivity
 
     Public Overrides Function Run() As IDialogPrompt
         itemModel.Take()
-        Return GroundMenu.Launch(Context, Model, PreviousDialog).Invoke().Run()
+        Return GroundMenu.Launch(Context, Model, Previous).Invoke().Run()
     End Function
 
 

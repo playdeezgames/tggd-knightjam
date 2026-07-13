@@ -13,6 +13,9 @@ Friend Class InPlay
     End Function
 
     Public Overrides Function Run() As IDialogPrompt
-        Return NavigationMenu.Launch(Context, Model, PreviousDialog).Invoke().Run()
+        If Model.IsInCombat Then
+            Return CombatMenu.Launch(Context, Model, Previous).Invoke().Run()
+        End If
+        Return NavigationMenu.Launch(Context, Model, Previous).Invoke().Run()
     End Function
 End Class
