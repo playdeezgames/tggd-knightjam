@@ -38,7 +38,15 @@ Friend Module LocationVerbExtensions
         character.SetName("Rat")
         character.SetFlavor("This is a rat. It has big hair and likes heavy metal.")
         character.SetRat()
+        character.CreateVerb(VerbTypes.FIGHT, InitializeFight(character))
     End Sub
+
+    Private Function InitializeFight(character As ICharacter) As VerbInitializer
+        Return Sub(verb)
+                   verb.SetName("Fight!")
+                   verb.SetFlavor($"You attack {character.GetName()}!")
+               End Sub
+    End Function
 
     <Extension>
     Sub Perform(verb As IVerb, location As ILocation)

@@ -7,7 +7,12 @@ Friend Module CharacterVerbExtensions
 
     Private ReadOnly canPerformTable As New Dictionary(Of String, CanPerformHandler) From
         {
+            {VerbTypes.CELLAR_QUEST, AddressOf CanAcceptCellarQuest}
         }
+
+    Private Function CanAcceptCellarQuest(verb As IVerb, character As ICharacter) As Boolean
+        Return Not verb.World.Avatar.HasTag(Tags.QUEST_RATS)
+    End Function
 
     <Extension>
     Friend Function CanPerform(verb As IVerb, character As ICharacter) As Boolean
@@ -20,7 +25,14 @@ Friend Module CharacterVerbExtensions
 
     Private ReadOnly performTable As New Dictionary(Of String, PerformHandler) From
         {
+            {VerbTypes.CELLAR_QUEST, AddressOf AcceptCellarQuest}
         }
+
+    Private Sub AcceptCellarQuest(verb As IVerb, character As ICharacter)
+        Dim avatar = verb.World.Avatar
+        avatar.SetTag(Tags.QUEST_RATS)
+        avatar.AddMessage($"{avatar.GetName} accepts the job.")
+    End Sub
 
     <Extension>
     Sub Perform(verb As IVerb, character As ICharacter)
@@ -31,5 +43,4 @@ Friend Module CharacterVerbExtensions
             Return
         End If
     End Sub
-
 End Module

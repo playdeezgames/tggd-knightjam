@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports KJ.Persistence
 
-Friend Module EastSideInitializer
+Friend Module EastSideInnInitializer
     <Extension>
     Friend Function InitializeEastTown(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
@@ -38,10 +38,15 @@ Friend Module EastSideInitializer
                    location.SetName("Inn Cellar")
                    location.SetFlavor("Yer in the cellar of the inn. It smells of rat turd, and sounds like an early 80s hair band.")
                    location.CreateRoute(RouteTypes.BORING, Directions.UP, inn, InitializeStairs("up"))
-                   inn.CreateRoute(RouteTypes.BORING, Directions.DOWN, location, InitializeStairs("down"))
+                   inn.CreateRoute(RouteTypes.INN_CELLAR, Directions.DOWN, location, InitializeStairs("down"))
                    location.CreateVerb(VerbTypes.SEARCH, AddressOf InitializeSearch)
                End Sub
     End Function
+
+    Private Sub InitializeCellarQuest(verb As IVerb)
+        verb.SetName("Ask about work")
+        verb.SetFlavor("Gorachan sez: ""Well, I got a rat problem in my cellar. I'll pay one jools per rat tail, up to ten.""")
+    End Sub
 
     Private Sub InitializeSearch(verb As IVerb)
         verb.SetName("Search...")
@@ -59,6 +64,7 @@ Friend Module EastSideInitializer
         character.SetName("Gorachan")
         character.SetFlavor("""Welcome to Jusdatip Inn, ya cunt!""(he's not vulgar, just Australian)")
         character.CreateVerb(VerbTypes.CHECK_BUTTHOLE, AddressOf InitializeCheckButthole)
+        character.CreateVerb(VerbTypes.CELLAR_QUEST, AddressOf InitializeCellarQuest)
     End Sub
     Private Sub InitializeCheckButthole(verb As IVerb)
         verb.SetName("Check Butthole")

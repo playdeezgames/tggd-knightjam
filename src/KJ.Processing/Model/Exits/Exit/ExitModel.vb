@@ -24,7 +24,16 @@ Friend Class ExitModel
     Private Delegate Function AttemptHandler(character As ICharacter, route As IRoute) As Boolean
     Private ReadOnly attemptHandlerTable As New Dictionary(Of String, AttemptHandler) From
         {
+            {RouteTypes.INN_CELLAR, AddressOf HandleInnCellarAttempt}
         }
+
+    Private Function HandleInnCellarAttempt(character As ICharacter, route As IRoute) As Boolean
+        If Not character.HasTag(Tags.QUEST_RATS) Then
+            character.AddMessage("I don't think Gorachan wants you in cellar.")
+            Return False
+        End If
+        Return True
+    End Function
 
     Public Sub AttemptTake() Implements IExitModel.AttemptTake
         Dim world = route.World
