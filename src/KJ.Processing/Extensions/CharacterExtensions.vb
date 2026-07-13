@@ -9,12 +9,8 @@ Friend Module CharacterExtensions
     End Function
     <Extension>
     Friend Function IsRat(character As ICharacter) As Boolean
-        Return character.HasTag(Tags.RAT)
+        Return character.CharacterType = CharacterTypes.RAT
     End Function
-    <Extension>
-    Friend Sub SetRat(character As ICharacter)
-        character.SetTag(Tags.RAT)
-    End Sub
     <Extension>
     Friend Sub AddMessage(
                           character As ICharacter,

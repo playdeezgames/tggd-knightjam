@@ -24,6 +24,12 @@ Friend Class Character
         End Set
     End Property
 
+    Public ReadOnly Property CharacterType As String Implements ICharacter.CharacterType
+        Get
+            Return Data.CharacterType
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As CharacterData
         Get
             Return _data.Characters(CharacterId)

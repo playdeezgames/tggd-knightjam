@@ -6,7 +6,7 @@ Friend Module TownCenterInitializer
         Return Sub(location)
                    location.SetName("Town Center")
                    location.SetFlavor("You find yerself in the town center.")
-                   location.CreateCharacter(AddressOf InitializeZooperdan)
+                   location.CreateCharacter(CharacterTypes.NPC, AddressOf InitializeZooperdan)
                    context.CenterTown = location
                End Sub
     End Function

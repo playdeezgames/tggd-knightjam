@@ -3,7 +3,7 @@ Public Interface ILocation
     Inherits IInventoriedEntity
     ReadOnly Property LocationId As Guid
     ReadOnly Property HasRoutes As Boolean
-    Function CreateCharacter(Optional initialize As CharacterInitializer = Nothing) As ICharacter
+    Function CreateCharacter(characterType As String, Optional initialize As CharacterInitializer = Nothing) As ICharacter
     Function CreateRoute(routeType As String, direction As String, destination As ILocation, Optional initialize As RouteInitializer = Nothing) As IRoute
     ReadOnly Property Routes As IEnumerable(Of IRoute)
     Function CreateFeature(Optional initializer As FeatureInitializer = Nothing) As IFeature

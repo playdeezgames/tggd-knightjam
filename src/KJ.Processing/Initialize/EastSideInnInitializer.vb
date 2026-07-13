@@ -27,7 +27,7 @@ Friend Module EastSideInnInitializer
 #If DEBUG Then
                    context.PortalDestination = location
 #End If
-                   location.CreateCharacter(AddressOf InitializeGorachan)
+                   location.CreateCharacter(CharacterTypes.NPC, AddressOf InitializeGorachan)
                    location.World.CreateLocation(location.InitializeCellar())
                End Sub
     End Function

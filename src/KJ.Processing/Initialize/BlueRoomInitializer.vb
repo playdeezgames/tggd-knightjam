@@ -6,7 +6,7 @@ Friend Module BlueRoomInitializer
                    location.SetName("The Blue Room")
                    location.SetFlavor("This is the Blue Room. You feel like you may have been here before.")
                    context.BlueRoom = location
-                   location.CreateCharacter(InitializeAvatar(context))
+                   location.CreateCharacter(CharacterTypes.N00B, InitializeAvatar(context))
                    location.CreateRoute(RouteTypes.BORING, Directions.OUT, context.SouthWestTown, AddressOf InitializeBlueRoomDoor)
                    context.SouthWestTown.CreateRoute(RouteTypes.BORING, Directions.[IN], location, AddressOf InitializeBlueRoomDoor)
 #If DEBUG Then
@@ -33,8 +33,8 @@ Friend Module BlueRoomInitializer
                    character.SetFlavor("Yer pronouns are he/him. It makes sense if you know Finnish.")
                    character.InitializeCounter(Counters.HEALTH, 100, 0, 100)
                    character.InitializeCounter(Counters.SATIETY, 100, 0, 100)
-                   character.SetMetadata(Metadatas.ATTACK_ROLL, "2d6")
-                   character.SetMetadata(Metadatas.DEFEND_ROLL, "4d6")
+                   character.SetMetadata(Metadatas.ATTACK_ROLL, "1d20")
+                   character.SetMetadata(Metadatas.DEFEND_ROLL, "2d20")
                    character.World.Avatar = character
                End Sub
     End Function

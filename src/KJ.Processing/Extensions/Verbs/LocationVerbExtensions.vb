@@ -30,7 +30,7 @@ Friend Module LocationVerbExtensions
 
     Private Sub PerformSearch(verb As IVerb, location As ILocation)
         Dim character = location.World.Avatar
-        Dim rat = location.CreateCharacter(AddressOf InitializeRat)
+        Dim rat = location.CreateCharacter(CharacterTypes.RAT, AddressOf InitializeRat)
         character.AddMessage($"{character.GetName()} finds {rat.GetName()}!")
     End Sub
 
@@ -38,9 +38,8 @@ Friend Module LocationVerbExtensions
         character.SetName("Rat")
         character.SetFlavor("This is a rat. It has big hair and likes heavy metal.")
         character.InitializeCounter(Counters.HEALTH, 20, 0, 20)
-        character.SetMetadata(Metadatas.DEFEND_ROLL, "2d6")
-        character.SetMetadata(Metadatas.ATTACK_ROLL, "2d6")
-        character.SetRat()
+        character.SetMetadata(Metadatas.DEFEND_ROLL, "1d20")
+        character.SetMetadata(Metadatas.ATTACK_ROLL, "1d20")
         character.CreateVerb(VerbTypes.FIGHT, InitializeFight(character))
     End Sub
 
