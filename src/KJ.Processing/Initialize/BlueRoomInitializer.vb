@@ -7,10 +7,10 @@ Friend Module BlueRoomInitializer
                    location.SetFlavor("This is the Blue Room. You feel like you may have been here before.")
                    context.BlueRoom = location
                    location.CreateCharacter(InitializeAvatar(context))
-                   location.CreateRoute(Directions.OUT, context.SouthWestTown, AddressOf InitializeBlueRoomDoor)
-                   context.SouthWestTown.CreateRoute(Directions.[IN], location, AddressOf InitializeBlueRoomDoor)
+                   location.CreateRoute(RouteTypes.BORING, Directions.OUT, context.SouthWestTown, AddressOf InitializeBlueRoomDoor)
+                   context.SouthWestTown.CreateRoute(RouteTypes.BORING, Directions.[IN], location, AddressOf InitializeBlueRoomDoor)
 #If DEBUG Then
-                   location.CreateRoute(Directions.SIDEWAYS, context.PortalDestination, AddressOf InitializePortal)
+                   location.CreateRoute(RouteTypes.BORING, Directions.SIDEWAYS, context.PortalDestination, AddressOf InitializePortal)
 #End If
                End Sub
     End Function

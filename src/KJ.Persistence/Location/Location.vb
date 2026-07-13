@@ -63,11 +63,12 @@ Friend Class Location
         Return result
     End Function
 
-    Public Function CreateRoute(direction As String, destination As ILocation, Optional initialize As RouteInitializer = Nothing) As IRoute Implements ILocation.CreateRoute
+    Public Function CreateRoute(routeType As String, direction As String, destination As ILocation, Optional initialize As RouteInitializer = Nothing) As IRoute Implements ILocation.CreateRoute
         Dim routeId = Guid.NewGuid
         _data.Routes(routeId) = New RouteData With
             {
-                .DestinationLocationId = destination.LocationId
+                .DestinationLocationId = destination.LocationId,
+                .RouteType = routeType
             }
         Data.RouteIds(direction) = routeId
         Dim result As IRoute = Route.Create(World, _data, direction, routeId)

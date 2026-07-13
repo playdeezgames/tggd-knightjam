@@ -22,8 +22,8 @@ Friend Module EastSideInitializer
         Return Sub(location)
                    location.SetName("Inn")
                    location.SetFlavor("Yer inside Jusdatip Inn. Which is ironic, if you think about it.")
-                   location.CreateRoute(Directions.OUT, context.EastTown, AddressOf InitializeInnDoor)
-                   context.EastTown.CreateRoute(Directions.IN, location, AddressOf InitializeInnDoor)
+                   location.CreateRoute(RouteTypes.BORING, Directions.OUT, context.EastTown, AddressOf InitializeInnDoor)
+                   context.EastTown.CreateRoute(RouteTypes.BORING, Directions.IN, location, AddressOf InitializeInnDoor)
 #If DEBUG Then
                    context.PortalDestination = location
 #End If
@@ -37,8 +37,8 @@ Friend Module EastSideInitializer
         Return Sub(location)
                    location.SetName("Inn Cellar")
                    location.SetFlavor("Yer in the cellar of the inn. It smells of rat turd, and sounds like an early 80s hair band.")
-                   location.CreateRoute(Directions.UP, inn, InitializeStairs("up"))
-                   inn.CreateRoute(Directions.DOWN, location, InitializeStairs("down"))
+                   location.CreateRoute(RouteTypes.BORING, Directions.UP, inn, InitializeStairs("up"))
+                   inn.CreateRoute(RouteTypes.BORING, Directions.DOWN, location, InitializeStairs("down"))
                    location.CreateVerb(VerbTypes.SEARCH, AddressOf InitializeSearch)
                End Sub
     End Function

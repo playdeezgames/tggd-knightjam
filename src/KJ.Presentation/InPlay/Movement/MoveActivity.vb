@@ -16,7 +16,7 @@ Friend Class MoveActivity
     End Function
 
     Public Overrides Function Run() As IDialogPrompt
-        exitModel.Take()
+        exitModel.AttemptTake()
         Return InPlay.Launch(Context, Model, PreviousDialog).Invoke().Run()
     End Function
 End Class

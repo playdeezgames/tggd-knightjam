@@ -20,6 +20,12 @@ Friend Class Route
         End Get
     End Property
 
+    Public ReadOnly Property RouteType As String Implements IRoute.RouteType
+        Get
+            Return Data.RouteType
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As RouteData
         Get
             Return _data.Routes(RouteId)

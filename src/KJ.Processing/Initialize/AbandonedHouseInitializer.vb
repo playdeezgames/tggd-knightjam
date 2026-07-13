@@ -5,8 +5,8 @@ Friend Module AbandonedHouseInitializer
         Return Sub(location)
                    location.SetName("Abandoned House")
                    location.SetFlavor("This house is abandoned. The yard is overgrown. The doors are ripped off, and the windows are made of sheetgoods. You detect the unmistakable odor of a klonkku.")
-                   location.CreateRoute(Directions.OUT, context.SouthTown, AddressOf InitializeOpenDoorway)
-                   context.SouthTown.CreateRoute(Directions.IN, location, AddressOf InitializeOpenDoorway)
+                   location.CreateRoute(RouteTypes.BORING, Directions.OUT, context.SouthTown, AddressOf InitializeOpenDoorway)
+                   context.SouthTown.CreateRoute(RouteTypes.BORING, Directions.IN, location, AddressOf InitializeOpenDoorway)
                    location.Inventory.CreateItem(AddressOf InitializeDestroyedPrinter)
                    location.Inventory.CreateItem(AddressOf InitializePkasticBag)
                    Dim basement = location.World.CreateLocation(InitializeBasement(location))
@@ -17,8 +17,8 @@ Friend Module AbandonedHouseInitializer
         Return Sub(location)
                    location.SetName("Basement")
                    location.SetFlavor("This is the basement of the abandoned house. The stench of klonkku is overpowering.")
-                   location.CreateRoute(Directions.UP, house, AddressOf InitializeStairs)
-                   house.CreateRoute(Directions.DOWN, location, AddressOf InitializeStairs)
+                   location.CreateRoute(RouteTypes.BORING, Directions.UP, house, AddressOf InitializeStairs)
+                   house.CreateRoute(RouteTypes.BORING, Directions.DOWN, location, AddressOf InitializeStairs)
                    location.CreateFeature(AddressOf InitializeKlonkkuCorpse)
                End Sub
     End Function

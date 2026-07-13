@@ -21,12 +21,22 @@ Friend Class ExitModel
         End Get
     End Property
 
-    Public Sub Take() Implements IExitModel.Take
+    Private Delegate Function AttemptHandler(character As ICharacter, route As IRoute) As Boolean
+    Private ReadOnly attemptHandlerTable As New Dictionary(Of String, AttemptHandler) From
+        {
+        }
+
+    Public Sub AttemptTake() Implements IExitModel.AttemptTake
         Dim world = route.World
         world.ClearMessages()
         Dim character = world.Avatar
+        Dim attemptHandler As AttemptHandler = Nothing
+        If attemptHandlerTable.TryGetValue(route.RouteType, attemptHandler) Then
+            If Not attemptHandler.Invoke(character, route) Then
+                Return
+            End If
+        End If
         character.Location = route.Destination
-        character.AddMessage($"{character.GetName} goes {Direction}.")
         character.AddMessage(route.GetFlavor())
         character.Look()
     End Sub
