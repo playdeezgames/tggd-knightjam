@@ -22,9 +22,14 @@ Friend Class InventoryItemMenu
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
                 Append(AddressOf ChooseNeverMind).
-                Append(AddressOf ChooseDrop)
+                Append(AddressOf ChooseDrop).
+                Concat(itemModel.Verbs.Select(AddressOf ChooseVerb))
         End Get
     End Property
+
+    Private Function ChooseVerb(verbModel As IVerbModel) As LaunchDelegate
+        Return Function(c, m, p) DialogChoice.Create(verbModel.IsEnabled, verbModel.Name, ItemVerbActivity.Launch(c, m, p, itemModel, verbModel))
+    End Function
 
     Private Function ChooseDrop(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
         Return DialogChoice.CreateEnabled("Drop", DropActivity.Launch(context, model, previous, itemModel))

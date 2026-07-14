@@ -45,6 +45,12 @@ Friend Module AbandonedHouseInitializer
     Private Sub InitializePkasticBag(item As IItem)
         item.SetName("Pkastic Bag")
         item.SetFlavor("No, that is not a misspelling. This item is made from pkastic. You have mixed feelings about reaching inside.")
+        item.CreateVerb(VerbTypes.REACH_IN, AddressOf InitializeReachInPkasticBag)
+    End Sub
+
+    Private Sub InitializeReachInPkasticBag(verb As IVerb)
+        verb.SetName("Reach In")
+        verb.SetFlavor("Remembering last time, you cringe a bit as you reach in to the pkastic bag.")
     End Sub
 
     Private Sub InitializeDestroyedPrinter(item As IItem)

@@ -3,4 +3,5 @@
     Sub Take()
     Sub Drop()
     Sub Describe()
+    ReadOnly Property Verbs As IEnumerable(Of IVerbModel)
 End Interface

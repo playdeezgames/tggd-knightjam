@@ -15,6 +15,12 @@ Friend Class ItemModel
         End Get
     End Property
 
+    Public ReadOnly Property Verbs As IEnumerable(Of IVerbModel) Implements IItemModel.Verbs
+        Get
+            Return item.Verbs.Select(Function(x) ItemVerbModel.Create(item, x))
+        End Get
+    End Property
+
     Public Sub Take() Implements IItemModel.Take
         Dim world = item.World
         Dim character = world.Avatar
