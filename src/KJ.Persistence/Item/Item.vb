@@ -22,6 +22,12 @@ Friend Class Item
         End Set
     End Property
 
+    Public ReadOnly Property ItemType As String Implements IItem.ItemType
+        Get
+            Return Data.ItemType
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As ItemData
         Get
             Return _data.Items(ItemId)

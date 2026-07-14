@@ -40,16 +40,8 @@ Friend Module LocationVerbExtensions
         character.InitializeCounter(Counters.HEALTH, 20, 0, 20)
         character.SetMetadata(Metadatas.DEFEND_ROLL, "1d20")
         character.SetMetadata(Metadatas.ATTACK_ROLL, "1d20")
-        character.CreateVerb(VerbTypes.FIGHT, InitializeFight(character))
         character.SetTag(Tags.ENEMY)
     End Sub
-
-    Private Function InitializeFight(character As ICharacter) As VerbInitializer
-        Return Sub(verb)
-                   verb.SetName("Fight!")
-                   verb.SetFlavor($"You start a fight with {character.GetName()}!")
-               End Sub
-    End Function
 
     <Extension>
     Sub Perform(verb As IVerb, location As ILocation)

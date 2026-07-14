@@ -11,7 +11,7 @@ Friend Module CharacterDeathExtensions
     Private Sub RatDeath(character As ICharacter)
         Dim world = character.World
         Dim location = character.Location
-        Dim item = location.Inventory.CreateItem(AddressOf InitializeRatTail)
+        Dim item = location.Inventory.CreateItem(ItemTypes.RAT_TAIL, AddressOf InitializeRatTail)
         world.AddMessage($"As {character.GetName()} dies, it drops {item.GetName()} on the ground.")
     End Sub
 

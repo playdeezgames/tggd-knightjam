@@ -33,6 +33,7 @@ Friend Module BlueRoomInitializer
                    character.SetFlavor("Yer pronouns are he/him. It makes sense if you know Finnish.")
                    character.InitializeCounter(Counters.HEALTH, 100, 0, 100)
                    character.InitializeCounter(Counters.SATIETY, 100, 0, 100)
+                   character.InitializeCounter(Counters.JOOLS, 0, 0, Integer.MaxValue)
                    character.SetMetadata(Metadatas.ATTACK_ROLL, "1d20")
                    character.SetMetadata(Metadatas.DEFEND_ROLL, "2d20")
                    character.World.Avatar = character

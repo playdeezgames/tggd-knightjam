@@ -65,7 +65,14 @@ Friend Module EastSideInnInitializer
         character.SetFlavor("""Welcome to Jusdatip Inn, ya cunt!""(he's not vulgar, just Australian)")
         character.CreateVerb(VerbTypes.CHECK_BUTTHOLE, AddressOf InitializeCheckButthole)
         character.CreateVerb(VerbTypes.CELLAR_QUEST, AddressOf InitializeCellarQuest)
+        character.CreateVerb(VerbTypes.GIVE_RAT_TAIL, AddressOf InitializeGiveRatTail)
     End Sub
+
+    Private Sub InitializeGiveRatTail(verb As IVerb)
+        verb.SetName("Give Rat Tail(s)")
+        verb.SetFlavor("You turn in the rat tail(s) to Gorachan for the reward.")
+    End Sub
+
     Private Sub InitializeCheckButthole(verb As IVerb)
         verb.SetName("Check Butthole")
         verb.SetFlavor("Gorachan sez: ""If you wanna check my butthole, you'll have to buy me dinner first, mate!"" He MIGHT be kidding.")
