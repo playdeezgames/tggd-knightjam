@@ -18,6 +18,7 @@ Friend Class NavigationMenu
         Get
             Return Enumerable.Empty(Of LaunchDelegate).
                 Append(AddressOf ChooseMove).
+                Append(AddressOf ChooseStatus).
                 Append(AddressOf ChooseGround).
                 Append(AddressOf ChooseInventory).
                 Append(AddressOf ChooseCharacters).
@@ -27,6 +28,10 @@ Friend Class NavigationMenu
                 Append(AddressOf ChooseGameMenu)
         End Get
     End Property
+
+    Private Function ChooseStatus(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
+        Return DialogChoice.CreateEnabled("Status...", StatusActivity.LaunchStatusActivity(context, model, previous))
+    End Function
 
     Private Function ChooseVerb(verbModel As IVerbModel) As LaunchDelegate
         Return Function(c, m, p) DialogChoice.Create(verbModel.IsEnabled, verbModel.Name, LocationVerbActivity.Launch(c, m, p, verbModel))

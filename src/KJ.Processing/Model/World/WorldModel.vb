@@ -80,6 +80,11 @@ Public Class WorldModel
         Entity.Avatar.AttemptRun()
     End Sub
 
+    Public Sub ShowStatus() Implements IWorldModel.ShowStatus
+        Entity.ClearMessages()
+        Entity.Avatar.ShowStatus()
+    End Sub
+
     Public Shared Async Function Create(quittable As Boolean, persister As IPersister) As Task(Of IWorldModel)
         Dim entity As IWorld
         Try

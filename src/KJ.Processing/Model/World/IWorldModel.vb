@@ -8,6 +8,7 @@ Public Interface IWorldModel
     Sub Abandon()
     Sub Look() 'TODO: goes into location model
     Sub AttemptRun()
+    Sub ShowStatus()
     ReadOnly Property Location As ILocationModel
     ReadOnly Property Messages As IEnumerable(Of IMessage)
     ReadOnly Property Exits As IExitsModel ' TODO: goes into location model

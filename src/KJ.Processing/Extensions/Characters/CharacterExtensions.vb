@@ -98,8 +98,20 @@ Friend Module CharacterExtensions
         Return character.GetCounter(Counters.HEALTH)
     End Function
     <Extension>
+    Friend Function GetSatiety(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.SATIETY)
+    End Function
+    <Extension>
+    Friend Function GetJools(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.JOOLS)
+    End Function
+    <Extension>
     Friend Function GetMaximumHealth(character As ICharacter) As Integer
         Return character.GetCounterMaximum(Counters.HEALTH)
+    End Function
+    <Extension>
+    Friend Function GetMaximumSatiety(character As ICharacter) As Integer
+        Return character.GetCounterMaximum(Counters.SATIETY)
     End Function
     <Extension>
     Friend Sub AttemptRun(character As ICharacter)
@@ -107,5 +119,13 @@ Friend Module CharacterExtensions
         world.AddMessage($"{character.GetName()} attempts to flee!")
         Dim route = RNG.FromEnumerable(character.Location.Routes)
         route.AttemptTake(character)
+    End Sub
+    <Extension>
+    Friend Sub ShowStatus(character As ICharacter)
+        Dim world = character.World
+        world.AddMessage($"{character.GetName}'s Status:")
+        world.AddMessage($"- Health: {character.GetHealth()}/{character.GetMaximumHealth()}")
+        world.AddMessage($"- Satiety: {character.GetSatiety()}/{character.GetMaximumSatiety()}")
+        world.AddMessage($"- Jools: {character.GetJools()}")
     End Sub
 End Module
