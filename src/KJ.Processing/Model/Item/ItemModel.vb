@@ -32,6 +32,12 @@ Friend Class ItemModel
         item.Inventory = character.Location.Inventory
     End Sub
 
+    Public Sub Describe() Implements IItemModel.Describe
+        Dim world = item.World
+        world.ClearMessages()
+        world.AddMessage(item.GetFlavor())
+    End Sub
+
     Friend Shared Function Create(item As IItem) As IItemModel
         Return New ItemModel(item)
     End Function

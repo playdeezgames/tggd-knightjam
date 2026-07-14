@@ -31,7 +31,10 @@ Friend Class InventoryItemMenu
     End Function
 
     Friend Shared Function Launch(c As IDisplayContext, m As IWorldModel, p As DialogSource, itemModel As IItemModel) As DialogSource
-        Return Function() New InventoryItemMenu(c, m, p, itemModel)
+        Return Function()
+                   itemModel.Describe()
+                   Return New InventoryItemMenu(c, m, p, itemModel)
+               End Function
     End Function
 
     Private Function ChooseNeverMind(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
