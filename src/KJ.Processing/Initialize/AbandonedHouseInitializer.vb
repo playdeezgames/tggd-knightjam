@@ -10,6 +10,9 @@ Friend Module AbandonedHouseInitializer
                    location.Inventory.CreateItem(ItemTypes.PRINTER, AddressOf InitializeDestroyedPrinter)
                    location.Inventory.CreateItem(ItemTypes.PKASTIC_BAG, AddressOf InitializePkasticBag)
                    Dim basement = location.World.CreateLocation(InitializeBasement(location))
+#If DEBUG Then
+                   context.PortalDestination = location
+#End If
                End Sub
     End Function
 

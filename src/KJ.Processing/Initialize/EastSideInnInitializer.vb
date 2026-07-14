@@ -37,9 +37,6 @@ Friend Module EastSideInnInitializer
                    location.CreateRoute(RouteTypes.BORING, Directions.UP, inn, InitializeStairs("up"))
                    inn.CreateRoute(RouteTypes.INN_CELLAR, Directions.DOWN, location, InitializeStairs("down"))
                    location.CreateVerb(VerbTypes.SEARCH, AddressOf InitializeSearch)
-#If DEBUG Then
-                   context.PortalDestination = location
-#End If
                End Sub
     End Function
 
