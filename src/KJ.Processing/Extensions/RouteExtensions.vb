@@ -10,7 +10,7 @@ Friend Module RouteExtensions
 
     Private Function HandleInnCellarAttempt(character As ICharacter, route As IRoute) As Boolean
         If Not character.HasTag(Tags.QUEST_RATS) Then
-            character.AddMessage("I don't think Gorachan wants you in cellar.")
+            character.World.AddMessage("I don't think Gorachan wants you in cellar.")
             Return False
         End If
         Return True
@@ -25,7 +25,7 @@ Friend Module RouteExtensions
             End If
         End If
         character.Location = route.Destination
-        character.AddMessage(route.GetFlavor())
+        character.World.AddMessage(route.GetFlavor())
         Return True
     End Function
 End Module

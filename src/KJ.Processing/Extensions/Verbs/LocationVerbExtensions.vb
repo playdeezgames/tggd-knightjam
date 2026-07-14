@@ -31,7 +31,7 @@ Friend Module LocationVerbExtensions
     Private Sub PerformSearch(verb As IVerb, location As ILocation)
         Dim character = location.World.Avatar
         Dim rat = location.CreateCharacter(CharacterTypes.RAT, AddressOf InitializeRat)
-        character.AddMessage($"{character.GetName()} finds {rat.GetName()}!")
+        character.World.AddMessage($"{character.GetName()} finds {rat.GetName()}!")
     End Sub
 
     Private Sub InitializeRat(character As ICharacter)
@@ -46,7 +46,7 @@ Friend Module LocationVerbExtensions
     <Extension>
     Sub Perform(verb As IVerb, location As ILocation)
         Dim handler As PerformHandler = Nothing
-        verb.World.Avatar.AddMessage(verb.GetFlavor())
+        verb.World.AddMessage(verb.GetFlavor())
         If performTable.TryGetValue(verb.VerbType, handler) Then
             handler.Invoke(verb, location)
             Return

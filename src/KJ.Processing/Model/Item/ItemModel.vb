@@ -19,8 +19,8 @@ Friend Class ItemModel
         Dim world = item.World
         Dim character = world.Avatar
         world.ClearMessages()
-        character.AddMessage($"{character.GetName} takes {item.GetName}.")
-        character.AddMessage(item.GetFlavor)
+        character.World.AddMessage($"{character.GetName} takes {item.GetName}.")
+        character.World.AddMessage(item.GetFlavor)
         item.Inventory = character.Inventory
     End Sub
 
@@ -28,7 +28,7 @@ Friend Class ItemModel
         Dim world = item.World
         Dim character = world.Avatar
         world.ClearMessages()
-        character.AddMessage($"{character.GetName} drops {item.GetName}.")
+        character.World.AddMessage($"{character.GetName} drops {item.GetName}.")
         item.Inventory = character.Location.Inventory
     End Sub
 

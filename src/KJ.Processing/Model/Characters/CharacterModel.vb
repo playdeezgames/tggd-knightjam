@@ -24,7 +24,7 @@ Friend Class CharacterModel
     Public Sub Examine() Implements ICharacterModel.Examine
         Dim world = character.World
         world.ClearMessages()
-        world.Avatar.AddMessage(character.GetFlavor())
+        world.AddMessage(character.GetFlavor())
     End Sub
 
     Public Sub Attack() Implements ICharacterModel.Attack

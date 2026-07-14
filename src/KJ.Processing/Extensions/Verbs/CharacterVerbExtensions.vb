@@ -55,14 +55,14 @@ Friend Module CharacterVerbExtensions
     Private Sub AcceptCellarQuest(verb As IVerb, character As ICharacter)
         Dim avatar = verb.World.Avatar
         avatar.SetTag(Tags.QUEST_RATS)
-        avatar.AddMessage($"{avatar.GetName} accepts the job.")
+        avatar.World.AddMessage($"{avatar.GetName} accepts the job.")
         avatar.InitializeCounter(Counters.RAT_TAILS_REMAINING, 10, 0, 10)
     End Sub
 
     <Extension>
     Sub Perform(verb As IVerb, character As ICharacter)
         Dim handler As PerformHandler = Nothing
-        verb.World.Avatar.AddMessage(verb.GetFlavor())
+        verb.World.AddMessage(verb.GetFlavor())
         If performTable.TryGetValue(verb.VerbType, handler) Then
             handler.Invoke(verb, character)
             Return

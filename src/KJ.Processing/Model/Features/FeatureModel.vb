@@ -25,8 +25,8 @@ Friend Class FeatureModel
         Dim world = feature.World
         world.ClearMessages()
         Dim character = world.Avatar
-        character.AddMessage($"{character.GetName} interacts with {feature.GetName}.")
-        character.AddMessage(feature.GetFlavor())
+        character.World.AddMessage($"{character.GetName} interacts with {feature.GetName}.")
+        character.World.AddMessage(feature.GetFlavor())
     End Sub
 
     Friend Shared Function Create(feature As IFeature) As IFeatureModel
