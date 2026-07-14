@@ -24,22 +24,22 @@ Friend Module EastSideInnInitializer
                    location.SetFlavor("Yer inside Jusdatip Inn. Which is ironic, if you think about it.")
                    location.CreateRoute(RouteTypes.BORING, Directions.OUT, context.EastTown, AddressOf InitializeInnDoor)
                    context.EastTown.CreateRoute(RouteTypes.BORING, Directions.IN, location, AddressOf InitializeInnDoor)
-#If DEBUG Then
-                   context.PortalDestination = location
-#End If
                    location.CreateCharacter(CharacterTypes.NPC, AddressOf InitializeGorachan)
-                   location.World.CreateLocation(location.InitializeCellar())
+                   location.World.CreateLocation(location.InitializeCellar(context))
                End Sub
     End Function
 
     <Extension>
-    Private Function InitializeCellar(inn As ILocation) As LocationInitializer
+    Private Function InitializeCellar(inn As ILocation, context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("Inn Cellar")
                    location.SetFlavor("Yer in the cellar of the inn. It smells of rat turd, and sounds like an early 80s hair band.")
                    location.CreateRoute(RouteTypes.BORING, Directions.UP, inn, InitializeStairs("up"))
                    inn.CreateRoute(RouteTypes.INN_CELLAR, Directions.DOWN, location, InitializeStairs("down"))
                    location.CreateVerb(VerbTypes.SEARCH, AddressOf InitializeSearch)
+#If DEBUG Then
+                   context.PortalDestination = location
+#End If
                End Sub
     End Function
 
