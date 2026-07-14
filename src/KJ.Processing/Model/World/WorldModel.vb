@@ -75,6 +75,11 @@ Public Class WorldModel
         Entity.Avatar.Look()
     End Sub
 
+    Public Sub AttemptRun() Implements IWorldModel.AttemptRun
+        Entity.ClearMessages()
+        Entity.Avatar.AttemptRun()
+    End Sub
+
     Public Shared Async Function Create(quittable As Boolean, persister As IPersister) As Task(Of IWorldModel)
         Dim entity As IWorld
         Try

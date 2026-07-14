@@ -30,7 +30,7 @@ Friend Class CombatMenu
     End Function
 
     Private Function ChooseRun(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As IDialogChoice
-        Return DialogChoice.Create(True, "Run!", RunActivity.Launch(context, model, previous))
+        Return DialogChoice.Create(True, "Run!", RunActivity.LaunchRunActivity(context, model, previous))
     End Function
 
     Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, previous As DialogSource) As DialogSource

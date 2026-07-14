@@ -21,33 +21,13 @@ Friend Class ExitModel
         End Get
     End Property
 
-    Private Delegate Function AttemptHandler(character As ICharacter, route As IRoute) As Boolean
-    Private ReadOnly attemptHandlerTable As New Dictionary(Of String, AttemptHandler) From
-        {
-            {RouteTypes.INN_CELLAR, AddressOf HandleInnCellarAttempt}
-        }
-
-    Private Function HandleInnCellarAttempt(character As ICharacter, route As IRoute) As Boolean
-        If Not character.HasTag(Tags.QUEST_RATS) Then
-            character.AddMessage("I don't think Gorachan wants you in cellar.")
-            Return False
-        End If
-        Return True
-    End Function
-
     Public Sub AttemptTake() Implements IExitModel.AttemptTake
         Dim world = route.World
         world.ClearMessages()
         Dim character = world.Avatar
-        Dim attemptHandler As AttemptHandler = Nothing
-        If attemptHandlerTable.TryGetValue(route.RouteType, attemptHandler) Then
-            If Not attemptHandler.Invoke(character, route) Then
-                Return
-            End If
+        If route.AttemptTake(character) Then
+            character.Look()
         End If
-        character.Location = route.Destination
-        character.AddMessage(route.GetFlavor())
-        character.Look()
     End Sub
 
     Friend Shared Function Create(route As IRoute) As IExitModel

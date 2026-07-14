@@ -30,7 +30,7 @@ Friend Module CharacterVerbExtensions
         }
 
     Private Sub HandleFight(verb As IVerb, character As ICharacter)
-        verb.World.EnterCombat()
+        character.SetTag(Tags.ENEMY)
     End Sub
 
     Private Sub AcceptCellarQuest(verb As IVerb, character As ICharacter)

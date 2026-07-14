@@ -41,6 +41,7 @@ Friend Module LocationVerbExtensions
         character.SetMetadata(Metadatas.DEFEND_ROLL, "1d20")
         character.SetMetadata(Metadatas.ATTACK_ROLL, "1d20")
         character.CreateVerb(VerbTypes.FIGHT, InitializeFight(character))
+        character.SetTag(Tags.ENEMY)
     End Sub
 
     Private Function InitializeFight(character As ICharacter) As VerbInitializer

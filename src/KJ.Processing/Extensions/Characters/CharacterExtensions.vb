@@ -79,7 +79,6 @@ Friend Module CharacterExtensions
             defender.TakeDamage(damage)
             If defender.IsDead Then
                 world.AddMessage($"{attacker.GetName} kills {defender.GetName}!")
-                world.CheckCombatFinished()
             Else
                 world.AddMessage($"{defender.GetName} has {defender.GetHealth()}/{defender.GetMaximumHealth()} health left.")
             End If
@@ -111,4 +110,11 @@ Friend Module CharacterExtensions
     Friend Function GetMaximumHealth(character As ICharacter) As Integer
         Return character.GetCounterMaximum(Counters.HEALTH)
     End Function
+    <Extension>
+    Friend Sub AttemptRun(character As ICharacter)
+        Dim world = character.World
+        world.AddMessage($"{character.GetName()} attempts to flee!")
+        Dim route = RNG.FromEnumerable(character.Location.Routes)
+        route.AttemptTake(character)
+    End Sub
 End Module
