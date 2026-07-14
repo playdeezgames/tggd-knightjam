@@ -47,6 +47,10 @@ Friend Class Location
         End Get
     End Property
 
+    Public Overrides Sub Remove()
+        Throw New NotImplementedException()
+    End Sub
+
     Friend Shared Function Create(world As IWorld, data As WorldData, locationId As Guid?) As ILocation
         Return If(locationId.HasValue, New Location(world, data, locationId.Value), Nothing)
     End Function

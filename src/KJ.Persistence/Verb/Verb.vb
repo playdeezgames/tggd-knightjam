@@ -23,6 +23,10 @@ Friend Class Verb
         End Get
     End Property
 
+    Public Overrides Sub Remove()
+        Throw New NotImplementedException()
+    End Sub
+
     Friend Shared Function Create(world As IWorld, data As WorldData, verbId As Guid) As IVerb
         Return New Verb(world, data, verbId)
     End Function

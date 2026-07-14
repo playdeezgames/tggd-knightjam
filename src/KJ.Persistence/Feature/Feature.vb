@@ -24,6 +24,10 @@ Friend Class Feature
         End Get
     End Property
 
+    Public Overrides Sub Remove()
+        Throw New NotImplementedException()
+    End Sub
+
     Friend Shared Function Create(world As IWorld, data As WorldData, featureId As Guid) As IFeature
         Return New Feature(world, data, featureId)
     End Function

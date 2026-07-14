@@ -32,6 +32,10 @@ Friend Class Route
         End Get
     End Property
 
+    Public Overrides Sub Remove()
+        Throw New NotImplementedException()
+    End Sub
+
     Friend Shared Function Create(world As IWorld, data As WorldData, direction As String, routeId As Guid?) As IRoute
         Return If(routeId.HasValue, New Route(world, data, direction, routeId.Value), Nothing)
     End Function

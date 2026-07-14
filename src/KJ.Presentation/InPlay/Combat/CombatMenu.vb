@@ -25,7 +25,7 @@ Friend Class CombatMenu
 
     Private Function ChooseAttack(characterModel As ICharacterModel) As LaunchDelegate
         Return Function(c, m, p)
-                   Return DialogChoice.CreateEnabled($"Attack {characterModel.Name}", AttackActivity.Launch(c, m, p, characterModel))
+                   Return DialogChoice.CreateEnabled($"Attack {characterModel.Name}", AttackActivity.LaunchAttackActivity(c, m, p, characterModel))
                End Function
     End Function
 

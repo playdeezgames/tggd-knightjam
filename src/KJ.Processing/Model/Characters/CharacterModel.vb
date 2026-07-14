@@ -34,6 +34,8 @@ Friend Class CharacterModel
         avatar.Attack(character)
         If Not character.IsDead() Then
             character.Attack(avatar)
+        Else
+            character.Die()
         End If
     End Sub
 

@@ -28,6 +28,11 @@ Friend Class Item
         End Get
     End Property
 
+    Public Overrides Sub Remove()
+        _data.Inventories(Data.InventoryId).ItemIds.Remove(ItemId)
+        _data.Items.Remove(ItemId)
+    End Sub
+
     Friend Shared Function Create(world As IWorld, data As WorldData, itemId As Guid?) As IItem
         Return If(
             itemId.HasValue,

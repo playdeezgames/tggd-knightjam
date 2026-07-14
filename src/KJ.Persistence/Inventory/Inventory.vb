@@ -47,4 +47,11 @@ Friend Class Inventory
         initializer?.Invoke(result)
         Return result
     End Function
+
+    Public Sub Remove() Implements IInventory.Remove
+        For Each item In Items
+            item.Remove()
+        Next
+        _data.Inventories.Remove(InventoryId)
+    End Sub
 End Class
