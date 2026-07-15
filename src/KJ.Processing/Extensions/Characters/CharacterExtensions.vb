@@ -98,8 +98,16 @@ Friend Module CharacterExtensions
         Return character.GetCounter(Counters.HEALTH)
     End Function
     <Extension>
+    Friend Function GetStomach(character As ICharacter) As Integer
+        Return character.GetCounter(Counters.STOMACH)
+    End Function
+    <Extension>
     Friend Function GetSatiety(character As ICharacter) As Integer
         Return character.GetCounter(Counters.SATIETY)
+    End Function
+    <Extension>
+    Friend Function IsStomachEmpty(character As ICharacter) As Boolean
+        Return character.IsCounterMinimum(Counters.STOMACH)
     End Function
     <Extension>
     Friend Function GetJools(character As ICharacter) As Integer
@@ -108,6 +116,10 @@ Friend Module CharacterExtensions
     <Extension>
     Friend Function GetMaximumHealth(character As ICharacter) As Integer
         Return character.GetCounterMaximum(Counters.HEALTH)
+    End Function
+    <Extension>
+    Friend Function GetMaximumStomach(character As ICharacter) As Integer
+        Return character.GetCounterMaximum(Counters.STOMACH)
     End Function
     <Extension>
     Friend Function GetMaximumSatiety(character As ICharacter) As Integer
@@ -126,6 +138,9 @@ Friend Module CharacterExtensions
         world.AddMessage($"{character.GetName}'s Status:")
         world.AddMessage($"- Health: {character.GetHealth()}/{character.GetMaximumHealth()}")
         world.AddMessage($"- Satiety: {character.GetSatiety()}/{character.GetMaximumSatiety()}")
+        If Not character.IsStomachEmpty() Then
+            world.AddMessage($"- Stomach: {character.GetStomach()}/{character.GetMaximumStomach()}")
+        End If
         world.AddMessage($"- Jools: {character.GetJools()}")
     End Sub
 End Module

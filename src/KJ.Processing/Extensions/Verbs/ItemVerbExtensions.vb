@@ -40,13 +40,13 @@ Friend Module ItemVerbExtensions
     Private Sub InitializeOrange(item As IItem)
         item.SetName("Orange")
         item.SetFlavor("It's an orange. It is round, and pleasant to touch.")
-        item.SetCounter(Counters.SATIETY, 20)
+        item.SetCounter(Counters.STOMACH, 20)
     End Sub
 
     Private Sub InitializeBanana(item As IItem)
         item.SetName("Banana")
         item.SetFlavor("It's a good sized banana. Its firm, and feels nice in yer hand.")
-        item.SetCounter(Counters.SATIETY, 20)
+        item.SetCounter(Counters.STOMACH, 20)
     End Sub
 
     <Extension>
